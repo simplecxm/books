@@ -26,26 +26,22 @@ public class BookServiceImpl implements IBookService {
     }
 
     public String updateBook(Book books){
-//        int result = bookMapper.updateBook(books.getBisbn(),books.getBname(),
-//                     books.getBwriter(),books.getBnumber(),books.getBsort(),
-//                     books.getBpub(),books.getBprice(),books.getBintro(),books.getBpic());
-//        if(result > 0){
-//            return "success";
-//        }else {
-//            return "fail";
-//        }
-        return null;
+        int result = bookMapper.updateBook(books);
+        if(result > 0){
+            return "success";
+        }else {
+            return "fail";
+        }
 
     }
 
     public String delete(Integer bIsbn){
-//        int result = bookMapper.delete(bIsbn);
-//        if(result > 0){
-//            return "success";
-//        }else {
-//            return "fail";
-//        }
-        return null;
+        int result = bookMapper.delete(bIsbn);
+        if(result > 0){
+            return "success";
+        }else {
+            return "fail";
+        }
     }
 
    public ServerResponse<PageInfo> listBook(int  pageNum,int pageSize){

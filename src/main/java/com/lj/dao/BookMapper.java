@@ -18,4 +18,10 @@ public interface BookMapper {
     int updateByPrimaryKey(Book record);
 
     List<Book> bookList();
+
+    int delete(Integer bIsbn);
+
+    int updateBook(Book book);
+
+    int addBooks(Book book);
 }
