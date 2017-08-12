@@ -11,22 +11,25 @@ public class Book {
 
     private Integer bnumber;
 
+    private Integer boutnumber;
+
     private String bsort;
 
     private String bpub;
 
-    private Double bprice;
+    private Long bprice;
 
     private String bintro;
 
-    private byte[] bpic;
+    private String bpic;
 
-    public Book(Integer bid, Integer bisbn, String bname, String bwriter, Integer bnumber, String bsort, String bpub, Double bprice, String bintro, byte[] bpic) {
+    public Book(Integer bid, Integer bisbn, String bname, String bwriter, Integer bnumber, Integer boutnumber, String bsort, String bpub, Long bprice, String bintro, String bpic) {
         this.bid = bid;
         this.bisbn = bisbn;
         this.bname = bname;
         this.bwriter = bwriter;
         this.bnumber = bnumber;
+        this.boutnumber = boutnumber;
         this.bsort = bsort;
         this.bpub = bpub;
         this.bprice = bprice;
@@ -78,6 +81,14 @@ public class Book {
         this.bnumber = bnumber;
     }
 
+    public Integer getBoutnumber() {
+        return boutnumber;
+    }
+
+    public void setBoutnumber(Integer boutnumber) {
+        this.boutnumber = boutnumber;
+    }
+
     public String getBsort() {
         return bsort;
     }
@@ -94,11 +105,11 @@ public class Book {
         this.bpub = bpub == null ? null : bpub.trim();
     }
 
-    public Double getBprice() {
+    public Long getBprice() {
         return bprice;
     }
 
-    public void setBprice(Double bprice) {
+    public void setBprice(Long bprice) {
         this.bprice = bprice;
     }
 
@@ -110,11 +121,11 @@ public class Book {
         this.bintro = bintro == null ? null : bintro.trim();
     }
 
-    public byte[] getBpic() {
+    public String getBpic() {
         return bpic;
     }
 
-    public void setBpic(byte[] bpic) {
-        this.bpic = bpic;
+    public void setBpic(String bpic) {
+        this.bpic = bpic == null ? null : bpic.trim();
     }
 }
