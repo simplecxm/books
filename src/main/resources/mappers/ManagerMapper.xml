@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lj.dao.ManagerMapper">
+  <resultMap id="BaseResultMap" type="com.lj.pojo.Manager">
+    <constructor>
+      <idArg column="mid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="mname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mpwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    mid, mname, mpwd
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manager
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manager
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lj.pojo.Manager">
+    insert into manager (mid, mname, mpwd
+      )
+    values (#{mid,jdbcType=INTEGER}, #{mname,jdbcType=VARCHAR}, #{mpwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lj.pojo.Manager">
+    insert into manager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        mid,
+      </if>
+      <if test="mname != null">
+        mname,
+      </if>
+      <if test="mpwd != null">
+        mpwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="mname != null">
+        #{mname,jdbcType=VARCHAR},
+      </if>
+      <if test="mpwd != null">
+        #{mpwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lj.pojo.Manager">
+    update manager
+    <set>
+      <if test="mname != null">
+        mname = #{mname,jdbcType=VARCHAR},
+      </if>
+      <if test="mpwd != null">
+        mpwd = #{mpwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lj.pojo.Manager">
+    update manager
+    set mname = #{mname,jdbcType=VARCHAR},
+      mpwd = #{mpwd,jdbcType=VARCHAR}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+</mapper>

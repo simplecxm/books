@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lj.dao.ReaderMapper">
+    <resultMap id="BaseResultMap" type="com.lj.pojo.Reader">
+        <constructor>
+            <idArg column="rid" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="rname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="rpwd" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="rage" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="rsex" javaType="java.lang.String" jdbcType="CHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    rid, rname, rpwd, rage, rsex
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from reader
+        where rid = #{rid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from reader
+    where rid = #{rid,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.lj.pojo.Reader">
+    insert into reader (rid, rname, rpwd, 
+      rage, rsex)
+    values (#{rid,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR}, #{rpwd,jdbcType=VARCHAR}, 
+      #{rage,jdbcType=INTEGER}, #{rsex,jdbcType=CHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.lj.pojo.Reader">
+        insert into reader
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="rid != null">
+                rid,
+            </if>
+            <if test="rname != null">
+                rname,
+            </if>
+            <if test="rpwd != null">
+                rpwd,
+            </if>
+            <if test="rage != null">
+                rage,
+            </if>
+            <if test="rsex != null">
+                rsex,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="rid != null">
+                #{rid,jdbcType=INTEGER},
+            </if>
+            <if test="rname != null">
+                #{rname,jdbcType=VARCHAR},
+            </if>
+            <if test="rpwd != null">
+                #{rpwd,jdbcType=VARCHAR},
+            </if>
+            <if test="rage != null">
+                #{rage,jdbcType=INTEGER},
+            </if>
+            <if test="rsex != null">
+                #{rsex,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lj.pojo.Reader">
+        update reader
+        <set>
+            <if test="rname != null">
+                rname = #{rname,jdbcType=VARCHAR},
+            </if>
+            <if test="rpwd != null">
+                rpwd = #{rpwd,jdbcType=VARCHAR},
+            </if>
+            <if test="rage != null">
+                rage = #{rage,jdbcType=INTEGER},
+            </if>
+            <if test="rsex != null">
+                rsex = #{rsex,jdbcType=CHAR},
+            </if>
+        </set>
+        where rid = #{rid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lj.pojo.Reader">
+    update reader
+    set rname = #{rname,jdbcType=VARCHAR},
+      rpwd = #{rpwd,jdbcType=VARCHAR},
+      rage = #{rage,jdbcType=INTEGER},
+      rsex = #{rsex,jdbcType=CHAR}
+    where rid = #{rid,jdbcType=INTEGER}
+  </update>
+    <select id="login" parameterType="string" resultType="com.lj.pojo.Reader">
+        select
+        <include refid="Base_Column_List"/>
+        from reader
+        where rname=#{rname} and rpwd=#{rpwd}
+    </select>
+    <insert id="register" parameterType="map">
+    insert into reader( rid,rname, rpwd, rage, rsex)
+    value (null ,#{rname},#{rpwd},#{rage},#{rsex})
+  </insert>
+</mapper>

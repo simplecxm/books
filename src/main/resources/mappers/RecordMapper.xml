@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lj.dao.RecordMapper">
+  <resultMap id="BaseResultMap" type="com.lj.pojo.Record">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="bisbn" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="rname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="outdate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="indate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="penalty" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bisbn, rname, outdate, indate, penalty
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lj.pojo.Record">
+    insert into record (id, bisbn, rname, 
+      outdate, indate, penalty
+      )
+    values (#{id,jdbcType=INTEGER}, #{bisbn,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR}, 
+      #{outdate,jdbcType=TIMESTAMP}, #{indate,jdbcType=TIMESTAMP}, #{penalty,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lj.pojo.Record">
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bisbn != null">
+        bisbn,
+      </if>
+      <if test="rname != null">
+        rname,
+      </if>
+      <if test="outdate != null">
+        outdate,
+      </if>
+      <if test="indate != null">
+        indate,
+      </if>
+      <if test="penalty != null">
+        penalty,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bisbn != null">
+        #{bisbn,jdbcType=INTEGER},
+      </if>
+      <if test="rname != null">
+        #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="outdate != null">
+        #{outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indate != null">
+        #{indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="penalty != null">
+        #{penalty,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lj.pojo.Record">
+    update record
+    <set>
+      <if test="bisbn != null">
+        bisbn = #{bisbn,jdbcType=INTEGER},
+      </if>
+      <if test="rname != null">
+        rname = #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="outdate != null">
+        outdate = #{outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indate != null">
+        indate = #{indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="penalty != null">
+        penalty = #{penalty,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lj.pojo.Record">
+    update record
+    set bisbn = #{bisbn,jdbcType=INTEGER},
+      rname = #{rname,jdbcType=VARCHAR},
+      outdate = #{outdate,jdbcType=TIMESTAMP},
+      indate = #{indate,jdbcType=TIMESTAMP},
+      penalty = #{penalty,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
