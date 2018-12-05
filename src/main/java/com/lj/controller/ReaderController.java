@@ -36,9 +36,9 @@ public class ReaderController {
 
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
     @ResponseBody
-    public Reader login(String rname,String rpwd) {
+    public Reader login(String rName,String rPwd) {
 
-        return iReaderService.login(rname, rpwd);
+        return iReaderService.login(rName, rPwd);
     }
 
 

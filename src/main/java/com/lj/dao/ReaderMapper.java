@@ -16,7 +16,7 @@ public interface ReaderMapper {
 
     int updateByPrimaryKey(Reader record);
 
-    Reader login(@Param("rname")String rname,@Param("rpwd")String rpwd);
+    Reader login(@Param("rName")String rName,@Param("rPwd")String rPwd);
 
-    int register(@Param("rname")String rname,@Param("rpwd")String rpwd,@Param("rage")Integer rage,@Param("rsex")String rsex);
+    int register(@Param("rName")String rName,@Param("rPwd")String rPwd,@Param("rAge")Integer rAge,@Param("rSex")String rSex);
 }

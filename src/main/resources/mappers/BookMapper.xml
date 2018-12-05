@@ -181,4 +181,30 @@
       bintro = #{bintro,jdbcType=VARCHAR}
     where bid = #{bid,jdbcType=INTEGER}
   </update>
+  <insert id="addBook" parameterType="map">
+    insert into book(bid,bisbn,bname,bwriter,bnumber,bsort,bpub,bprice,bintro,bpic)
+    value (null ,#{bIsbn},#{bName},#{bWriter},#{bNumber},#{bSort},#{bPub},#{bPrice},#{bIntro},#{bpic})
+  </insert>
+  <update id="updateBook" parameterType="com.lj.pojo.Book" >
+    update  book
+    set book.bisbn = #{bIsbn,jdbcType=INTEGER},
+      book.bname = #{bName,jdbcType=VARCHAR},
+      book.bwriter = #{bWriter,jdbcType=VARCHAR},
+      book.bnumber = #{bNumber,jdbcType=INTEGER},
+      book.bsort = #{bSort,jdbcType=VARCHAR},
+      book.bpub = #{bPub,jdbcType=VARCHAR},
+      book.bprice = #{bPrice,jdbcType=DOUBLE},
+      book.bintro = #{bIntro,jdbcType=VARCHAR}
+    where book.bisbn = #{bIsbn,jdbcType=INTEGER}
+  </update>
+  <delete id="delete" parameterType="Integer">
+    delete from book
+    where bisbn = #{bIsbn}
+  </delete>
+  <select id="listBook" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    book
+  </select>
 </mapper>

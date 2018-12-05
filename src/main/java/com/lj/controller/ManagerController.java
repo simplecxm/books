@@ -1,6 +1,7 @@
 package com.lj.controller;
 
-import com.lj.pojo.Book;
+
+import com.lj.pojo.Manager;
 import com.lj.service.IManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,16 @@ public class ManagerController {
     private IManagerService iManagerService;
 
     @RequestMapping(value = "managerHtml.do", method = RequestMethod.GET)
+    public String loginHtml(){
 
-    public String managerHtml(){ return "manager"; }
+        return "manager";
+    }
 
     @RequestMapping(value = "manager.do", method = RequestMethod.GET)
     @ResponseBody
-    public String addBooks(Book book){ return iManagerService.addBooks(book); }
+    public Manager manager(String mname, String mpwd) {
+
+        return iManagerService.mlogin(mname, mpwd);
+    }
+
 }

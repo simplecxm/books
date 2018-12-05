@@ -20,8 +20,8 @@ public class ReaderServiceImpl implements IReaderService {
         return "fail";
     }
 
-    public Reader login(String rname, String rpwd) {
-        Reader reader = readerMapper.login(rname, rpwd);
+    public Reader login(String rName, String rPwd) {
+        Reader reader = readerMapper.login(rName, rPwd);
         if (!reader.equals(null)){
             return reader;
         }

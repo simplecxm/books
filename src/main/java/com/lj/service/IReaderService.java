@@ -6,5 +6,5 @@ public interface IReaderService {
 
     String register(Reader reader);
 
-    Reader login(String rname, String rpwd);
+    Reader login(String rName, String rPwd);
 }

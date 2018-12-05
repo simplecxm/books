@@ -1,7 +1,8 @@
 package com.lj.service;
 
-import com.lj.pojo.Book;
+import com.lj.pojo.Manager;
 
 public interface IManagerService {
-    String addBooks(Book book);
+
+    Manager mlogin(String mname,String mpwd);
 }

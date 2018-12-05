@@ -96,10 +96,10 @@
         select
         <include refid="Base_Column_List"/>
         from reader
-        where rname=#{rname} and rpwd=#{rpwd}
+        where rname=#{rName} and rpwd=#{rPwd}
     </select>
     <insert id="register" parameterType="map">
     insert into reader( rid,rname, rpwd, rage, rsex)
-    value (null ,#{rname},#{rpwd},#{rage},#{rsex})
-  </insert>
+    value (null ,#{rName},#{rPwd},#{rAge},#{rSex})
+    </insert>
 </mapper>

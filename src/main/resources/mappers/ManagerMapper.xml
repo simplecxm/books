@@ -70,4 +70,10 @@
       mpwd = #{mpwd,jdbcType=VARCHAR}
     where mid = #{mid,jdbcType=INTEGER}
   </update>
+  <select id="mlogin" parameterType="string" resultType="com.lj.pojo.Manager">
+    select
+    <include refid="Base_Column_List"/>
+    from manager
+    where mname=#{mname}and mpwd=#{mpwd}
+  </select>
 </mapper>
