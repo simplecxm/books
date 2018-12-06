@@ -65,4 +65,16 @@ public class ReaderController {
         return iReaderService.deleteReader(rname);
     }
 
+    @RequestMapping(value = "findReaderHtml.do",method = RequestMethod.GET)
+    public String findReaderHtml(){
+        return "findReader";
+    }
+
+    @RequestMapping(value = "fineReader.do",method = RequestMethod.GET)
+    @ResponseBody
+    public Reader findReader(String rname) {
+
+        return iReaderService.findReader(rname);
+    }
+
 }

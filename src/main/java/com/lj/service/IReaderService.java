@@ -11,4 +11,6 @@ public interface IReaderService {
     String updateReader(Reader reader);
 
     String deleteReader(String rname);
+
+    Reader findReader(String rname);
 }

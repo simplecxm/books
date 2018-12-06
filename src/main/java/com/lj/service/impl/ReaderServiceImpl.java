@@ -44,4 +44,12 @@ public class ReaderServiceImpl implements IReaderService {
         }
         return "fail";
     }
+
+    public Reader findReader(String rname){
+        Reader reader = readerMapper.findReader(rname);
+        if (!reader.equals(null)){
+            return reader;
+        }
+        return null;
+    }
 }

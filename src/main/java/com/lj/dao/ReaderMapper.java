@@ -24,5 +24,7 @@ public interface ReaderMapper {
 
     int deleteReader(String rname);
 
+    Reader findReader(@Param("rname")String rname);
+
 
 }
