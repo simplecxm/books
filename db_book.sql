@@ -30,9 +30,9 @@ CREATE TABLE `book` (
   `bnumber` int(10) NOT NULL,
   `bsort` varchar(20) NOT NULL,
   `bpub` varchar(20) NOT NULL,
-  `bprice` double(10,0) NOT NULL,
+  `bprice` decimal(10,0) NOT NULL,
   `bintro` varchar(100) DEFAULT NULL,
-  `bpic` blob,
+  `bpic` varchar(50) delete null ,
   PRIMARY KEY (`bid`),
   UNIQUE KEY `bisbn` (`bisbn`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
