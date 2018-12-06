@@ -44,10 +44,13 @@ public class BookServiceImpl implements IBookService {
         }
     }
 
-   public ServerResponse<PageInfo> listBook(int  pageNum,int pageSize){
+   public ServerResponse<PageInfo> listBook(int pageNum,int pageSize){
        PageHelper.startPage(pageNum,pageSize);
        List<Book> books = bookMapper.bookList();
        PageInfo<Book> pageInfo = new PageInfo<>(books);
        return ServerResponse.createBySuccess("success",pageInfo);
+   }
+   public List<Book> findBook(Integer bisbn){
+    return bookMapper.findBook(bisbn);
    }
 }

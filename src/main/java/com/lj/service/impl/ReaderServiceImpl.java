@@ -6,6 +6,8 @@ import com.lj.service.IReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("iReaderService")
 public class ReaderServiceImpl implements IReaderService {
 
@@ -45,11 +47,7 @@ public class ReaderServiceImpl implements IReaderService {
         return "fail";
     }
 
-    public Reader findReader(String rname){
-        Reader reader = readerMapper.findReader(rname);
-        if (!reader.equals(null)){
-            return reader;
-        }
-        return null;
+    public List<Reader> findReader(String rname){
+        return readerMapper.findReader(rname);
     }
 }

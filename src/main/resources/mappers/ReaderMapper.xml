@@ -114,7 +114,7 @@
         delete from reader
         where rname = #{rname}
     </delete>
-    <select id="findReader" parameterType="string" resultType="com.lj.pojo.Reader">
+    <select id="findReader" resultMap="com.lj.dao.ReaderMapper.BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from reader

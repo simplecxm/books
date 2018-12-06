@@ -2,6 +2,8 @@ package com.lj.service;
 
 import com.lj.pojo.Reader;
 
+import java.util.List;
+
 public interface IReaderService {
 
     String register(Reader reader);
@@ -12,5 +14,5 @@ public interface IReaderService {
 
     String deleteReader(String rname);
 
-    Reader findReader(String rname);
+    List<Reader> findReader(String rname);
 }

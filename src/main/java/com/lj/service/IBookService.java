@@ -11,4 +11,5 @@ public interface IBookService {
     String updateBook(Book book);
     String delete(Integer bIsbn);
     ServerResponse<PageInfo> listBook(int pageNum, int pageSize);
+    List<Book> findBook(Integer bisbn);
 }

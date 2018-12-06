@@ -196,4 +196,11 @@
       #{bsort,jdbcType=VARCHAR}, #{bpub,jdbcType=VARCHAR}, #{bprice,jdbcType=DECIMAL},
       #{bintro,jdbcType=VARCHAR}, #{bpic,jdbcType=VARCHAR})
   </insert>
+
+  <select id="findBook" resultMap="com.lj.dao.BookMapper.BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from book
+    where bisbn = #{bisbn}
+  </select>
 </mapper>

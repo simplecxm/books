@@ -3,6 +3,8 @@ package com.lj.dao;
 import com.lj.pojo.Reader;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface ReaderMapper {
     int deleteByPrimaryKey(Integer rid);
 
@@ -24,7 +26,7 @@ public interface ReaderMapper {
 
     int deleteReader(String rname);
 
-    Reader findReader(@Param("rname")String rname);
+    List<Reader> findReader(String rname);
 
 
 }

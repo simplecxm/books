@@ -50,4 +50,14 @@ public class BookController {
         return iBookService.listBook(pageNum,pageSize);
     }
 
+    @RequestMapping(value = "findBookHtml.do", method = RequestMethod.GET)
+    public String findBookHtml(){return "findBook";}
+
+    @RequestMapping(value = "findBook.do",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Book> findBook(Integer bisbn){
+        return iBookService.findBook(bisbn);
+
+    }
+
 }
