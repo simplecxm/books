@@ -19,4 +19,10 @@ public interface ReaderMapper {
     Reader login(@Param("rName")String rName,@Param("rPwd")String rPwd);
 
     int register(@Param("rName")String rName,@Param("rPwd")String rPwd,@Param("rAge")Integer rAge,@Param("rSex")String rSex);
+
+    int updateReader(Reader reader);
+
+    int deleteReader(String rname);
+
+
 }

@@ -22,14 +22,14 @@ public class BookController {
     @RequestMapping(value = "bookHtml.do", method = RequestMethod.GET)
     public String bookHtml(){ return "book"; }
 
-    @RequestMapping(value = "book.do", method = RequestMethod.GET)
+    @RequestMapping(value = "book.do", method = RequestMethod.POST)
     @ResponseBody
     public String addBooks(Book book){ return iBookService.addBooks(book);}
 
     @RequestMapping(value = "updateBookHtml.do",method = RequestMethod.GET)
     public String updateBookHtml(){return "updateBook";}
 
-    @RequestMapping(value = "updateBook.do",method = RequestMethod.GET)
+    @RequestMapping(value = "updateBook.do",method = RequestMethod.POST)
     @ResponseBody
     public String updateBook(Book book){return  iBookService.updateBook(book);}
 

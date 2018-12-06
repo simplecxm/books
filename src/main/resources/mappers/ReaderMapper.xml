@@ -99,7 +99,19 @@
         where rname=#{rName} and rpwd=#{rPwd}
     </select>
     <insert id="register" parameterType="map">
-    insert into reader( rid,rname, rpwd, rage, rsex)
-    value (null ,#{rName},#{rPwd},#{rAge},#{rSex})
+        insert into reader( rid,rname, rpwd, rage, rsex)
+        value (null ,#{rName},#{rPwd},#{rAge},#{rSex})
     </insert>
+    <update id="updateReader" parameterType="com.lj.pojo.Reader">
+        update reader
+        set rname = #{rname,jdbcType=VARCHAR},
+        rpwd = #{rpwd,jdbcType=VARCHAR},
+        rage = #{rage,jdbcType=INTEGER},
+        rsex = #{rsex,jdbcType=CHAR}
+        where rname = #{rname,jdbcType=INTEGER}
+    </update>
+    <delete id="deleteReader" parameterType="string">
+        delete from reader
+        where rname = #{rname}
+    </delete>
 </mapper>

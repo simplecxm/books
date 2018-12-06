@@ -41,5 +41,28 @@ public class ReaderController {
         return iReaderService.login(rName, rPwd);
     }
 
+    @RequestMapping(value = "updateReaderHtml.do",method = RequestMethod.GET)
+    public String updateReaderHtml(){
+        return "updateReader";
+    }
+
+    @RequestMapping(value = "updateReader.do",method = RequestMethod.GET)
+    @ResponseBody
+    public String updateReader(Reader reader) {
+
+        return iReaderService.updateReader(reader);
+    }
+
+    @RequestMapping(value = "deleteReaderHtml.do",method = RequestMethod.GET)
+    public String deleteReaderHtml(){
+        return "deleteReader";
+    }
+
+    @RequestMapping(value = "deleteReader.do",method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteReader(String rname) {
+
+        return iReaderService.deleteReader(rname);
+    }
 
 }

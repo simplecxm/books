@@ -27,4 +27,21 @@ public class ReaderServiceImpl implements IReaderService {
         }
         return null;
     }
+
+    public String updateReader(Reader reader){
+        int result = readerMapper.updateReader(reader);
+        if(result > 0){
+            return "success";
+        }
+            return "fail";
+
+    }
+
+    public String deleteReader(String rname){
+        int result = readerMapper.deleteReader(rname);
+        if(result > 0){
+            return "success";
+        }
+        return "fail";
+    }
 }
