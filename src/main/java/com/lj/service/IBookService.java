@@ -12,4 +12,6 @@ public interface IBookService {
     String delete(Integer bIsbn);
     ServerResponse<PageInfo> listBook(int pageNum, int pageSize);
     List<Book> findBook(Integer bisbn);
+    List<Book> findBookName(String bname);
+    List<Book> findBookWriter(String bwriter);
 }

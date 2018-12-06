@@ -60,4 +60,24 @@ public class BookController {
 
     }
 
+    @RequestMapping(value = "findBookNameHtml.do", method = RequestMethod.GET)
+    public String findBookNameHtml(){return "findBookName";}
+
+    @RequestMapping(value = "findBookName.do",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Book> findBookName(String bname){
+        return iBookService.findBookName(bname);
+
+    }
+
+    @RequestMapping(value = "findBookWriterHtml.do", method = RequestMethod.GET)
+    public String findBookWriterHtml(){return "findBookWriter";}
+
+    @RequestMapping(value = "findBookWriter.do",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Book> findBookWriter(String bwriter){
+        return iBookService.findBookWriter(bwriter);
+
+    }
+
 }

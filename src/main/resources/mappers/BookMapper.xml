@@ -203,4 +203,19 @@
     from book
     where bisbn = #{bisbn}
   </select>
+
+  <select id="findBookName" resultMap="com.lj.dao.BookMapper.BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from book
+    where bname like "%"#{bname}"%"
+  </select>
+
+  <select id="findBookWriter" resultMap="com.lj.dao.BookMapper.BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from book
+    where bwriter like "%"#{bwriter%}"%"
+  </select>
+
 </mapper>

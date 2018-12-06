@@ -53,4 +53,10 @@ public class BookServiceImpl implements IBookService {
    public List<Book> findBook(Integer bisbn){
     return bookMapper.findBook(bisbn);
    }
+    public List<Book> findBookName(String bname){
+        return bookMapper.findBookName(bname);
+    }
+    public List<Book> findBookWriter(String bwriter){
+        return bookMapper.findBookWriter(bwriter);
+    }
 }

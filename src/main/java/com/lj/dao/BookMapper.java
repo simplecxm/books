@@ -1,7 +1,6 @@
 package com.lj.dao;
 
 import com.lj.pojo.Book;
-import com.lj.pojo.Reader;
 
 import java.util.List;
 
@@ -27,4 +26,8 @@ public interface BookMapper {
     int addBooks(Book book);
 
     List<Book> findBook(Integer bisbn);
+
+    List<Book> findBookName(String bname);
+
+    List<Book> findBookWriter(String bwriter);
 }
