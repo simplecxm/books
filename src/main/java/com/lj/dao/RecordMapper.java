@@ -16,4 +16,5 @@ public interface RecordMapper {
     int updateByPrimaryKey(Record record);
 
     int borrow(Record record);
+
 }

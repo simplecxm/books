@@ -86,8 +86,8 @@ CREATE TABLE `record` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
   `bisbn` int(20) NOT NULL,
   `rname` varchar(30) NOT NULL,
-  `outdate` datetime NOT NULL,
-  `indate` datetime DEFAULT NULL,
+  `outdate` date NOT NULL,
+  `indate` date DEFAULT NULL,
   `penalty` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

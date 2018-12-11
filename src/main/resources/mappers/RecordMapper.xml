@@ -6,8 +6,8 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="bisbn" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="rname" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="outdate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="indate" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="outdate" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="indate" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="penalty" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
     </constructor>
   </resultMap>
@@ -26,11 +26,9 @@
   </delete>
   <insert id="insert" parameterType="com.lj.pojo.Record">
     insert into record (id, bisbn, rname, 
-      outdate, indate, penalty
-      )
+      outdate, indate, penalty)
     values (#{id,jdbcType=INTEGER}, #{bisbn,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR}, 
-      #{outdate,jdbcType=TIMESTAMP}, #{indate,jdbcType=TIMESTAMP}, #{penalty,jdbcType=DECIMAL}
-      )
+      #{outdate,jdbcType=DATE}, #{indate,jdbcType=DATE}, #{penalty,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.lj.pojo.Record">
     insert into record
@@ -65,10 +63,10 @@
         #{rname,jdbcType=VARCHAR},
       </if>
       <if test="outdate != null">
-        #{outdate,jdbcType=TIMESTAMP},
+        #{outdate,jdbcType=DATE},
       </if>
       <if test="indate != null">
-        #{indate,jdbcType=TIMESTAMP},
+        #{indate,jdbcType=DATE},
       </if>
       <if test="penalty != null">
         #{penalty,jdbcType=DECIMAL},
@@ -85,10 +83,10 @@
         rname = #{rname,jdbcType=VARCHAR},
       </if>
       <if test="outdate != null">
-        outdate = #{outdate,jdbcType=TIMESTAMP},
+        outdate = #{outdate,jdbcType=DATE},
       </if>
       <if test="indate != null">
-        indate = #{indate,jdbcType=TIMESTAMP},
+        indate = #{indate,jdbcType=DATE},
       </if>
       <if test="penalty != null">
         penalty = #{penalty,jdbcType=DECIMAL},
@@ -100,17 +98,17 @@
     update record
     set bisbn = #{bisbn,jdbcType=INTEGER},
       rname = #{rname,jdbcType=VARCHAR},
-      outdate = #{outdate,jdbcType=TIMESTAMP},
-      indate = #{indate,jdbcType=TIMESTAMP},
+      outdate = #{outdate,jdbcType=DATE},
+      indate = #{indate,jdbcType=DATE},
       penalty = #{penalty,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <insert id="borrow" parameterType="com.lj.pojo.Record">
+  <insert id="borrow" parameterType="map">
     insert into record (id, bisbn, rname,
-      outdate, indate, penalty
-      )
+      outdate, indate, penalty)
     values (null, #{bisbn,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR},
-      #{outdate,jdbcType=TIMESTAMP}, #{indate,jdbcType=TIMESTAMP}, #{penalty,jdbcType=DECIMAL}
-      )
+      now(), now(), #{penalty,jdbcType=DECIMAL})
   </insert>
+
+
 </mapper>
