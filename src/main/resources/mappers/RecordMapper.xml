@@ -105,4 +105,12 @@
       penalty = #{penalty,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <insert id="borrow" parameterType="com.lj.pojo.Record">
+    insert into record (id, bisbn, rname,
+      outdate, indate, penalty
+      )
+    values (null, #{bisbn,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR},
+      #{outdate,jdbcType=TIMESTAMP}, #{indate,jdbcType=TIMESTAMP}, #{penalty,jdbcType=DECIMAL}
+      )
+  </insert>
 </mapper>

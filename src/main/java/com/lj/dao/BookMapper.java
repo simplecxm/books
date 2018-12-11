@@ -30,4 +30,7 @@ public interface BookMapper {
     List<Book> findBookName(String bname);
 
     List<Book> findBookWriter(String bwriter);
+
+    List<Book> findBooks(String bsearch);
+
 }

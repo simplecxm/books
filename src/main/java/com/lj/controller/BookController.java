@@ -80,4 +80,11 @@ public class BookController {
 
     }
 
+    @RequestMapping(value = "findBooks.do",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Book> findBooks(String bsearch){
+        return iBookService.findBooks(bsearch);
+
+    }
+
 }

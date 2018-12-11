@@ -14,4 +14,5 @@ public interface IBookService {
     List<Book> findBook(Integer bisbn);
     List<Book> findBookName(String bname);
     List<Book> findBookWriter(String bwriter);
+    List<Book> findBooks(String bsearch);
 }

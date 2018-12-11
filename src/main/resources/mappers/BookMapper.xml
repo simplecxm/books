@@ -218,4 +218,11 @@
     where bwriter like "%"#{bwriter%}"%"
   </select>
 
+  <select id="findBooks" resultMap="com.lj.dao.BookMapper.BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from book
+    where bisbn=#{bisbn} or bname like "%"#{bname}"%" or bwriter like "%"#{bwriter%}"%"
+  </select>
+
 </mapper>
