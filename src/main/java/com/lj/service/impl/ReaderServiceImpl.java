@@ -1,5 +1,6 @@
 package com.lj.service.impl;
 
+import com.lj.common.ServerResponse;
 import com.lj.dao.ReaderMapper;
 import com.lj.pojo.Reader;
 import com.lj.service.IReaderService;
@@ -22,12 +23,12 @@ public class ReaderServiceImpl implements IReaderService {
         return "fail";
     }
 
-    public Reader login(String rName, String rPwd) {
+    public ServerResponse<Reader> login(String rName, String rPwd) {
         Reader reader = readerMapper.login(rName, rPwd);
-        if (!reader.equals(null)){
-            return reader;
+        if (reader!=null){
+            return ServerResponse.createBySuccess("登录成功",reader);
         }
-        return null;
+        return ServerResponse.createByErrorMessage("登录失败");
     }
 
     public String updateReader(Reader reader){
