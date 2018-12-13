@@ -5,6 +5,7 @@ import com.lj.pojo.Reader;
 import com.lj.service.IReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,14 +40,17 @@ public class ReaderController {
     }
 
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
-    @ResponseBody
-    public ServerResponse<Reader> login(String rName, String rPwd, HttpSession session) {
+    //@ResponseBody
+    public String login(String rName, String rPwd, /*HttpSession session, */Model model) {//ServerResponse<Reader>
         ServerResponse<Reader> response = iReaderService.login(rName, rPwd);
         if(response.isSuccess()){
-            session.setAttribute("rName",response.getData());
-            return response;
+            //session.setAttribute("rName",response.getData());
+            model.addAttribute("rName",rName);
+            //return response;
+            return "reader";
         }
-        return response;
+        //return response;
+        return "error";
     }
 
     @RequestMapping(value = "updateReaderHtml.do",method = RequestMethod.GET)
@@ -87,10 +91,10 @@ public class ReaderController {
 
     @RequestMapping(value = "get_reader_info.do",method = RequestMethod.GET)
     @ResponseBody
-    public ServerResponse getReaderInfo(HttpSession session){
+    public ServerResponse  getReaderInfo(HttpSession session){//ServerResponse
         Reader reader = (Reader)session.getAttribute("rName");
         if(reader!=null){
-            return ServerResponse.createBySuccess("获取成功",reader);
+           return ServerResponse.createBySuccess("获取成功",reader);
         }
         return ServerResponse.createByErrorMessage("请登录");
     }

@@ -19,6 +19,9 @@ public class BookController {
     @Autowired
     private IBookService iBookService;
 
+    @RequestMapping(value = "headerHtml.do", method = RequestMethod.GET)
+    public String headerHtml(){ return "header"; }
+
     @RequestMapping(value = "bookHtml.do", method = RequestMethod.GET)
     public String bookHtml(){ return "book"; }
 
