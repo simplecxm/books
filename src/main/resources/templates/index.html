@@ -34,34 +34,40 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="panel-1">
                         <p>
-                            <form action="/book.do" method="post">
-                        <p>isbn<input type="text" name="bisbn"></p>
-                        <p>书名<input type="text" name="bname"></p>
-                        <p>作者<input type="text" name="bwriter"></p>
-                        <p>库存数量<input type="text" name="bnumber"></p>
-                        <p>借出数量<input type="text" name="boutnumber"></p>
-                        <p>类别<input type="text" name="bsort"></p>
-                        <p>出版社<input type="text" name="bpub"></p>
-                        <p>价钱<input type="text" name="bprice"></p>
-                        <p>介绍<input type="text" name="bintro"></p>
-                        <p>图片<input type="file" name="bpic"></p>
-                        <p><input type="submit" value="submit"/></p>
-                        </form>
+                            <form action="/listBook.do" method="get">
+
+                            </form>
                         </p>
                     </div>
                     <div class="tab-pane" id="panel-2">
                         <p>
-                            Howdy, I'm in Section 2.
+                            <form action="/register.do" method="get">
+                        <p>账号<input type="text" name="rname"></p>
+                        <p>密码<input type="password" name="rpwd"></p>
+                        <p>年龄<input type="text" name="rage"></p>
+                        <p>性别<input type="radio" checked="checked" name="rsex" value="male">男
+                            <input type="radio"  name="rsex" value="female">女</p>
+
+                        <p><button>submit</button></p>
+                        </form>
                         </p>
                     </div>
                     <div class="tab-pane" id="panel-3">
                         <p>
-                            Howdy, I'm in Section 3.
+                            <form action="/login.do" method="get">
+                        <p>rid<input type="text" name="rName"></p>
+                        <p>rpwd<input type="text" name="rPwd"></p>
+                        <p><button>submit</button></p>
+                        </form>
                         </p>
                     </div>
                     <div class="tab-pane" id="panel-4">
                         <p>
-                            Howdy, I'm in Section 4.
+                            <form action="/manager.do" method="get">
+                        <p>账号<input type="text" name="mname"/></p>
+                        <p>密码<input type="text" name="mpwd"></p>
+                        <p><button>submit</button></p>
+                        </form>
                         </p>
                     </div>
                 </div>

@@ -58,7 +58,7 @@ public class ReaderController {
         return "updateReader";
     }
 
-    @RequestMapping(value = "updateReader.do",method = RequestMethod.GET)
+    @RequestMapping(value = "updateReader.do",method = RequestMethod.POST)
     @ResponseBody
     public String updateReader(Reader reader) {
 

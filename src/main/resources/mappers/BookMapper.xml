@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lj.dao.BookMapper">
-  <resultMap id="BaseResultMap" type="com.lj.pojo.Book">
-    <constructor>
-      <idArg column="bid" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="bisbn" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="bname" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="bwriter" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="bnumber" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="boutnumber" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="bsort" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="bpub" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="bprice" javaType="java.lang.Long" jdbcType="DECIMAL" />
-      <arg column="bintro" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="bpic" javaType="java.lang.String" jdbcType="VARCHAR" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.lj.pojo.Book">
+        <constructor>
+            <idArg column="bid" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="bisbn" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="bname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="bwriter" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="bnumber" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="boutnumber" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="bsort" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="bpub" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="bprice" javaType="java.lang.Long" jdbcType="DECIMAL"/>
+            <arg column="bintro" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="bpic" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
     bid, bisbn, bname, bwriter, bnumber, boutnumber, bsort, bpub, bprice, bintro, bpic
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from book
-    where bid = #{bid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+        where bid = #{bid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from book
     where bid = #{bid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.lj.pojo.Book">
+    <insert id="insert" parameterType="com.lj.pojo.Book">
     insert into book (bid, bisbn, bname, 
       bwriter, bnumber, boutnumber, 
       bsort, bpub, bprice, 
@@ -39,116 +39,116 @@
       #{bsort,jdbcType=VARCHAR}, #{bpub,jdbcType=VARCHAR}, #{bprice,jdbcType=DECIMAL}, 
       #{bintro,jdbcType=VARCHAR}, #{bpic,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.lj.pojo.Book">
-    insert into book
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="bid != null">
-        bid,
-      </if>
-      <if test="bisbn != null">
-        bisbn,
-      </if>
-      <if test="bname != null">
-        bname,
-      </if>
-      <if test="bwriter != null">
-        bwriter,
-      </if>
-      <if test="bnumber != null">
-        bnumber,
-      </if>
-      <if test="boutnumber != null">
-        boutnumber,
-      </if>
-      <if test="bsort != null">
-        bsort,
-      </if>
-      <if test="bpub != null">
-        bpub,
-      </if>
-      <if test="bprice != null">
-        bprice,
-      </if>
-      <if test="bintro != null">
-        bintro,
-      </if>
-      <if test="bpic != null">
-        bpic,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="bid != null">
-        #{bid,jdbcType=INTEGER},
-      </if>
-      <if test="bisbn != null">
-        #{bisbn,jdbcType=INTEGER},
-      </if>
-      <if test="bname != null">
-        #{bname,jdbcType=VARCHAR},
-      </if>
-      <if test="bwriter != null">
-        #{bwriter,jdbcType=VARCHAR},
-      </if>
-      <if test="bnumber != null">
-        #{bnumber,jdbcType=INTEGER},
-      </if>
-      <if test="boutnumber != null">
-        #{boutnumber,jdbcType=INTEGER},
-      </if>
-      <if test="bsort != null">
-        #{bsort,jdbcType=VARCHAR},
-      </if>
-      <if test="bpub != null">
-        #{bpub,jdbcType=VARCHAR},
-      </if>
-      <if test="bprice != null">
-        #{bprice,jdbcType=DECIMAL},
-      </if>
-      <if test="bintro != null">
-        #{bintro,jdbcType=VARCHAR},
-      </if>
-      <if test="bpic != null">
-        #{bpic,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lj.pojo.Book">
-    update book
-    <set>
-      <if test="bisbn != null">
-        bisbn = #{bisbn,jdbcType=INTEGER},
-      </if>
-      <if test="bname != null">
-        bname = #{bname,jdbcType=VARCHAR},
-      </if>
-      <if test="bwriter != null">
-        bwriter = #{bwriter,jdbcType=VARCHAR},
-      </if>
-      <if test="bnumber != null">
-        bnumber = #{bnumber,jdbcType=INTEGER},
-      </if>
-      <if test="boutnumber != null">
-        boutnumber = #{boutnumber,jdbcType=INTEGER},
-      </if>
-      <if test="bsort != null">
-        bsort = #{bsort,jdbcType=VARCHAR},
-      </if>
-      <if test="bpub != null">
-        bpub = #{bpub,jdbcType=VARCHAR},
-      </if>
-      <if test="bprice != null">
-        bprice = #{bprice,jdbcType=DECIMAL},
-      </if>
-      <if test="bintro != null">
-        bintro = #{bintro,jdbcType=VARCHAR},
-      </if>
-      <if test="bpic != null">
-        bpic = #{bpic,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where bid = #{bid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lj.pojo.Book">
+    <insert id="insertSelective" parameterType="com.lj.pojo.Book">
+        insert into book
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bid != null">
+                bid,
+            </if>
+            <if test="bisbn != null">
+                bisbn,
+            </if>
+            <if test="bname != null">
+                bname,
+            </if>
+            <if test="bwriter != null">
+                bwriter,
+            </if>
+            <if test="bnumber != null">
+                bnumber,
+            </if>
+            <if test="boutnumber != null">
+                boutnumber,
+            </if>
+            <if test="bsort != null">
+                bsort,
+            </if>
+            <if test="bpub != null">
+                bpub,
+            </if>
+            <if test="bprice != null">
+                bprice,
+            </if>
+            <if test="bintro != null">
+                bintro,
+            </if>
+            <if test="bpic != null">
+                bpic,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bid != null">
+                #{bid,jdbcType=INTEGER},
+            </if>
+            <if test="bisbn != null">
+                #{bisbn,jdbcType=INTEGER},
+            </if>
+            <if test="bname != null">
+                #{bname,jdbcType=VARCHAR},
+            </if>
+            <if test="bwriter != null">
+                #{bwriter,jdbcType=VARCHAR},
+            </if>
+            <if test="bnumber != null">
+                #{bnumber,jdbcType=INTEGER},
+            </if>
+            <if test="boutnumber != null">
+                #{boutnumber,jdbcType=INTEGER},
+            </if>
+            <if test="bsort != null">
+                #{bsort,jdbcType=VARCHAR},
+            </if>
+            <if test="bpub != null">
+                #{bpub,jdbcType=VARCHAR},
+            </if>
+            <if test="bprice != null">
+                #{bprice,jdbcType=DECIMAL},
+            </if>
+            <if test="bintro != null">
+                #{bintro,jdbcType=VARCHAR},
+            </if>
+            <if test="bpic != null">
+                #{bpic,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lj.pojo.Book">
+        update book
+        <set>
+            <if test="bisbn != null">
+                bisbn = #{bisbn,jdbcType=INTEGER},
+            </if>
+            <if test="bname != null">
+                bname = #{bname,jdbcType=VARCHAR},
+            </if>
+            <if test="bwriter != null">
+                bwriter = #{bwriter,jdbcType=VARCHAR},
+            </if>
+            <if test="bnumber != null">
+                bnumber = #{bnumber,jdbcType=INTEGER},
+            </if>
+            <if test="boutnumber != null">
+                boutnumber = #{boutnumber,jdbcType=INTEGER},
+            </if>
+            <if test="bsort != null">
+                bsort = #{bsort,jdbcType=VARCHAR},
+            </if>
+            <if test="bpub != null">
+                bpub = #{bpub,jdbcType=VARCHAR},
+            </if>
+            <if test="bprice != null">
+                bprice = #{bprice,jdbcType=DECIMAL},
+            </if>
+            <if test="bintro != null">
+                bintro = #{bintro,jdbcType=VARCHAR},
+            </if>
+            <if test="bpic != null">
+                bpic = #{bpic,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where bid = #{bid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lj.pojo.Book">
     update book
     set bisbn = #{bisbn,jdbcType=INTEGER},
       bname = #{bname,jdbcType=VARCHAR},
@@ -163,15 +163,16 @@
     where bid = #{bid,jdbcType=INTEGER}
   </update>
 
-  <select id="bookList" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/>
-    from book
-  </select>
-  <delete id="delete" parameterType="integer" >
+    <select id="bookList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+    </select>
+    <delete id="delete" parameterType="integer">
     delete from book
     where bisbn = #{bIsbn}
   </delete>
-  <update id="updateBook" parameterType="com.lj.pojo.Book">
+    <update id="updateBook" parameterType="com.lj.pojo.Book">
     update book
     set bisbn = #{bisbn,jdbcType=INTEGER},
       bname = #{bname,jdbcType=VARCHAR},
@@ -186,7 +187,7 @@
     where bisbn = #{bisbn,jdbcType=INTEGER}
   </update>
 
-  <insert id="addBooks" parameterType="com.lj.pojo.Book">
+    <insert id="addBooks" parameterType="com.lj.pojo.Book">
     insert into book (bid, bisbn, bname,
       bwriter, bnumber, boutnumber,
       bsort, bpub, bprice,
@@ -197,32 +198,36 @@
       #{bintro,jdbcType=VARCHAR}, #{bpic,jdbcType=VARCHAR})
   </insert>
 
-  <select id="findBook" resultMap="com.lj.dao.BookMapper.BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from book
-    where bisbn = #{bisbn}
-  </select>
+    <select id="findBook" resultMap="com.lj.dao.BookMapper.BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+        where bisbn = #{bisbn}
+    </select>
 
-  <select id="findBookName" resultMap="com.lj.dao.BookMapper.BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from book
-    where bname like "%"#{bname}"%"
-  </select>
+    <select id="findBookName" resultMap="com.lj.dao.BookMapper.BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+        where bname like "%"#{bname}"%"
+    </select>
 
-  <select id="findBookWriter" resultMap="com.lj.dao.BookMapper.BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from book
-    where bwriter like "%"#{bwriter%}"%"
-  </select>
+    <select id="findBookWriter" resultMap="com.lj.dao.BookMapper.BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+        where bwriter like "%"#{bwriter%}"%"
+    </select>
 
-  <select id="findBooks" resultMap="com.lj.dao.BookMapper.BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from book
-    where bisbn=#{bisbn} or bname like "%"#{bname}"%" or bwriter like "%"#{bwriter%}"%"
-  </select>
+    <select id="findBooks" resultMap="com.lj.dao.BookMapper.BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+        where bisbn=#{bisbn} or bname like "%"#{bname}"%" or bwriter like "%"#{bwriter%}"%"
+    </select>
+
+    <update id="updateBnumberAndBOutNumber" parameterType="integer">
+       update book set bnumber=bnumber-1 , boutnumber = boutnumber + 1 where bisbn=#{bisbn}
+    </update>
 
 </mapper>

@@ -1,24 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/statics/css/bootstrap.min.css}" />
+    <script th:src="@{/statics/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/statics/js/bootstrap.min.js}"></script>
     <title>管理员登录</title>
 </head>
 <body>
-    <form action="/manager.do" method="get">
-    <!--<p>isbn<input type="text" name="bisbn"></p>
-    <p>书名<input type="text" name="bname"></p>
-    <p>作者<input type="text" name="bwriter"></p>
-    <p>数量<input type="text" name="bnumber"></p>
-    <p>类别<input type="text" name="bsort"></p>
-    <p>出版社<input type="text" name="bpub"></p>
-    <p>价钱<input type="text" name="bprice"></p>
-    <p>介绍<input type="text" name="bintro"></p>
-    <p>图片<input type="file" name="bpic"></p>
-    <p><button>submit</button></p>-->
-        <p>账号<input type="text" name="mname"/></p>
-        <p>密码<input type="text" name="mpwd"></p>
-        <p><button>submit</button></p>
-    </form>
+<div th:include="header :: copy"></div>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="col-md-2 column">
+
+                <div class="tabbable" id="tabs-318962">
+                    <ul class="nav navbar-btn">
+                        <li class="active">
+                            <a href="#panel-1" data-toggle="tab"><button class="btn btn-default" type="submit">浏览图书</button></a>
+                        </li>
+                        <li>
+                            <a href="#panel-2" data-toggle="tab"><button class="btn btn-default" type="submit">图书信息修改</button></a>
+                        </li>
+                        <li>
+                            <a href="#panel-3" data-toggle="tab"><button class="btn btn-default" type="submit">读者信息修改</button></a>
+                        </li>
+                        <li>
+                            <a href="#panel-4" data-toggle="tab"><button class="btn btn-default" type="submit">办理借阅</button></a>
+                        </li>
+                        <li>
+                            <a href="#panel-5" data-toggle="tab"><button class="btn btn-default" type="submit">办理归还</button></a>
+                        </li>
+                        <li>
+                            <a href="#panel-6" data-toggle="tab"><button class="btn btn-default" type="submit">退出登录</button></a>
+                        </li>
+                    </ul></div></div>
+            <div class="tab-content col-md-6 column">
+                <div class="tab-pane active" id="panel-1">
+                    <p>
+                        I'm in Section 1.
+                    </p>
+                </div>
+                <div class="tab-pane" id="panel-2">
+                    <p>
+                        <form action="/updateBook.do" method="post">
+                    <p>isbn<input type="text" name="bisbn"></p>
+                    <p>书名<input type="text" name="bname"></p>
+                    <p>作者<input type="text" name="bwriter"></p>
+                    <p>数量<input type="text" name="bnumber"></p>
+                    <p>类别<input type="text" name="bsort"></p>
+                    <p>出版社<input type="text" name="bpub"></p>
+                    <p>价钱<input type="text" name="bprice"></p>
+                    <p>介绍<input type="text" name="bintro"></p>
+                    <p>图片<input type="file" name="bpic"></p>
+                    <p><input type="submit" value="submit"/></p>
+                    </form>
+                    </p>
+                </div>
+                <div class="tab-pane" id="panel-3">
+                    <p>
+                        <form action="/updateBook.do" method="post">
+                    <p>读者账号<input type="text" name="rid"></p>
+                    <p>读者密码<input type="text" name="rid"></p>
+                    <p>年龄<input type="text" name="rid"></p>
+                    <p>性别<input type="text" name="rid"></p>
+                </form>
+                    </p>
+                </div>
+                <div class="tab-pane" id="panel-4">
+                    <p>
+                        <form action="/record.do" method="get">
+                    <p></p>
+                </form>
+                    </p>
+                </div>
+                <div class="tab-pane" id="panel-5">
+                    <p>
+                        Howdy, I'm in Section 5.
+                    </p>
+                </div>
+                <div class="tab-pane" id="panel-6">
+                    <p>
+                        Howdy, I'm in Section 6.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>

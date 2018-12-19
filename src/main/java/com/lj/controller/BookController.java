@@ -56,7 +56,7 @@ public class BookController {
         return iBookService.listBook(pageNum,pageSize);
     }
 
-    @RequestMapping(value = "findBookHtml.do", method = RequestMethod.GET)
+/*    @RequestMapping(value = "findBookHtml.do", method = RequestMethod.GET)
     public String findBookHtml(){return "findBook";}
 
     @RequestMapping(value = "findBook.do",method = RequestMethod.GET)
@@ -84,7 +84,7 @@ public class BookController {
     public List<Book> findBookWriter(String bwriter){
         return iBookService.findBookWriter(bwriter);
 
-    }
+    }*/
 
     @RequestMapping(value = "findBooks.do",method = RequestMethod.GET)
     @ResponseBody

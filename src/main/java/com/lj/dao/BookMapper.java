@@ -33,4 +33,6 @@ public interface BookMapper {
 
     List<Book> findBooks(String bsearch);
 
+    int updateBnumberAndBOutNumber(int bisbn);
+
 }
