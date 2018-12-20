@@ -1,13 +1,16 @@
 package com.lj.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.lj.common.ServerResponse;
 import com.lj.pojo.Reader;
+import com.lj.service.IBookService;
 import com.lj.service.IReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +21,9 @@ public class ReaderController {
 
     @Autowired
     private IReaderService iReaderService;
+
+    @Autowired
+    private IBookService iBookService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(){
@@ -99,4 +105,11 @@ public class ReaderController {
         return ServerResponse.createByErrorMessage("请登录");
     }
 
+    @RequestMapping(value = "readerHtml",method = RequestMethod.GET)
+    //@ResponseBody
+    public String listBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model){
+        ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
+        model.addAttribute("bookList", response.getData().getList());
+        return "reader";
+    }
 }

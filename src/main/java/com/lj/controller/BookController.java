@@ -7,6 +7,7 @@ import com.lj.service.IBookService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +20,7 @@ public class BookController {
     @Autowired
     private IBookService iBookService;
 
-    @RequestMapping(value = "indexHtml", method = RequestMethod.GET)
+    @RequestMapping(value = "indexHtml1", method = RequestMethod.GET)
     public String indexHtml(){ return "index"; }
 
     @RequestMapping(value = "headerHtml.do", method = RequestMethod.GET)
@@ -50,11 +51,15 @@ public class BookController {
     @RequestMapping(value = "listBookHtml.do", method = RequestMethod.GET)
     public String listBookHtml(){return "listBook";}
 
-    @RequestMapping(value = "listBook.do",method = RequestMethod.GET)
-    @ResponseBody
-    public ServerResponse<PageInfo> listBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,@RequestParam(value = "pageSize",defaultValue = "5") int pageSize){
-        return iBookService.listBook(pageNum,pageSize);
+    @RequestMapping(value = "indexHtml",method = RequestMethod.GET)
+    //@ResponseBody
+    public String listBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model){
+        ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
+        model.addAttribute("bookList", response.getData().getList());
+        return "index";
     }
+
+
 
 /*    @RequestMapping(value = "findBookHtml.do", method = RequestMethod.GET)
     public String findBookHtml(){return "findBook";}

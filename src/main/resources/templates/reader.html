@@ -30,12 +30,14 @@
                         <li>
                             <a href="#panel-4" data-toggle="tab"><button class="btn btn-default" type="submit">退出登录</button></a>
                         </li>
-                    </ul>
+                    </ul></div></div>
+
+
+
+                    <div class="col-md-8 column">
                     <div class="tab-content">
-                        <div class="tab-pane active" id="panel-1">
-                            <p>
-                                I'm in Section 1.
-                            </p>
+                        <div class="tab-pane active" id="panel-1" th:include="showbook2 :: copy">
+
                         </div>
                         <div class="tab-pane" id="panel-2">
                             <p>
@@ -53,7 +55,7 @@
                             </p>
                         </div>
                     </div>
-                </div></div>
+                    </div>
         </div>
     </div>
 </div>
