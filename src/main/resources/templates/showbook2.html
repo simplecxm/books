@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/statics/css/bootstrap.min.css}" />
+    <script th:src="@{/statics/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/statics/js/bootstrap.min.js}"></script>
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="copy">
+<ol>
+    <li>List循环：
+        <table border="1">
+            <tr>
+                <th>isbn</th>
+                <th>书名</th>
+                <th>作者</th>
+                <th>库存数量</th>
+                <th>借出数量</th>
+                <th>分类</th>
+                <th>出版社</th>
+                <th>价格</th>
+                <th>介绍</th>
+                <th>图片</th>
+
+                <!--<th>图片</th>-->
+            </tr>
+            <tr th:each="listbook:${bookList}">
+                <td th:text="${listbook.bisbn}">bisbn</td>
+                <td th:text="${listbook.bname}">bisbn</td>
+                <td th:text="${listbook.bwriter}">bisbn</td>
+                <td th:text="${listbook.bnumber}">bisbn</td>
+                <td th:text="${listbook.boutnumber}">bisbn</td>
+                <td th:text="${listbook.bsort}">bisbn</td>
+                <td th:text="${listbook.bpub}">bisbn</td>
+                <td th:text="${listbook.bprice}">bisbn</td>
+                <td th:text="${listbook.bintro}">bisbn</td>
+                <td th:text="${listbook.bpic}">bisbn</td>
+
+                <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
+            </tr>
+        </table>
+    </li>
+</ol>
+</div>
+</body>
+</html>

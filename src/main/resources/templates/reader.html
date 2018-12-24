@@ -9,26 +9,28 @@
 </head>
 <body>
 <div th:include="header :: copy"></div>
-<p>你好,</p>
-<p th:text="${rName}"></p>
-<div class="container">
+
+<div class="container" th:fragment="copy">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="col-md-2 column">
-
+                <p>你好,</p>
+                <p th:text="${rName}"></p>
                 <div class="tabbable" id="tabs-318962">
                     <ul class="nav navbar-btn">
+                        <li>
+                            <a th:href="@{/reader_listbook}"><button class="btn btn-default">浏览图书</button></a>
+                        <li>
                         <li class="active">
-                            <a href="#panel-1" data-toggle="tab"><button class="btn btn-default" type="submit">浏览图书</button></a>
-                        </li>
                         <li>
                             <a href="#panel-2" data-toggle="tab"><button class="btn btn-default" type="submit">信息修改</button></a>
+                        </li>
                         </li>
                         <li>
                             <a href="#panel-3" data-toggle="tab"><button class="btn btn-default" type="submit">查看借阅记录</button></a>
                         </li>
                         <li>
-                            <a href="#panel-4" data-toggle="tab"><button class="btn btn-default" type="submit">退出登录</button></a>
+                            <a href="/indexHtml"><button class="btn btn-default">退出登录</button></a>
                         </li>
                     </ul></div></div>
 
@@ -36,12 +38,53 @@
 
                     <div class="col-md-8 column">
                     <div class="tab-content">
-                        <div class="tab-pane active" id="panel-1" th:include="showbook2 :: copy">
+                        <div class="tab-pane" id="panel-1">
+                            <ol>
+                                <li>List循环：
+                                    <table border="1">
+                                        <tr>
+                                            <th>isbn</th>
+                                            <th>书名</th>
+                                            <th>作者</th>
+                                            <th>库存数量</th>
+                                            <th>借出数量</th>
+                                            <th>分类</th>
+                                            <th>出版社</th>
+                                            <th>价格</th>
+                                            <th>介绍</th>
+                                            <th>图片</th>
 
+                                            <!--<th>图片</th>-->
+                                        </tr>
+                                        <tr th:each="listbook:${bookList}">
+                                            <td th:text="${listbook.bisbn}">bisbn</td>
+                                            <td th:text="${listbook.bname}">bisbn</td>
+                                            <td th:text="${listbook.bwriter}">bisbn</td>
+                                            <td th:text="${listbook.bnumber}">bisbn</td>
+                                            <td th:text="${listbook.boutnumber}">bisbn</td>
+                                            <td th:text="${listbook.bsort}">bisbn</td>
+                                            <td th:text="${listbook.bpub}">bisbn</td>
+                                            <td th:text="${listbook.bprice}">bisbn</td>
+                                            <td th:text="${listbook.bintro}">bisbn</td>
+                                            <td th:text="${listbook.bpic}">bisbn</td>
+
+                                            <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
+                                        </tr>
+                                    </table>
+                                </li>
+                            </ol>
                         </div>
-                        <div class="tab-pane" id="panel-2">
+                        <div class="tab-pane active" id="panel-2">
                             <p>
-                                Howdy, I'm in Section 2.
+                                <form th:action="@{/updateReader.do}" method="post">
+                            <p>账号<input type="text" name="rname" th:value="${rName}" readonly="true"></p>
+                            <p>密码<input type="password" name="rpwd"></p>
+                            <p>年龄<input type="text" name="rage"></p>
+                            <p>性别<input type="radio" checked="checked" name="rsex" value="male">男
+                                <input type="radio"  name="rsex" value="female">女</p>
+
+                            <p><button>submit</button></p>
+                            </form>
                             </p>
                         </div>
                         <div class="tab-pane" id="panel-3">
@@ -51,7 +94,7 @@
                         </div>
                         <div class="tab-pane" id="panel-4">
                             <p>
-                                Howdy, I'm in Section 4.
+
                             </p>
                         </div>
                     </div>

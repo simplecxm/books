@@ -104,11 +104,11 @@
     </insert>
     <update id="updateReader" parameterType="com.lj.pojo.Reader">
         update reader
-        set rname = #{rname,jdbcType=VARCHAR},
+        set rname = rname,
         rpwd = #{rpwd,jdbcType=VARCHAR},
         rage = #{rage,jdbcType=INTEGER},
         rsex = #{rsex,jdbcType=CHAR}
-        where rname = #{rname,jdbcType=INTEGER}
+        where rname = #{rname}
     </update>
     <delete id="deleteReader" parameterType="string">
         delete from reader

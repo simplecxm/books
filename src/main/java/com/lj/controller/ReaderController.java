@@ -59,6 +59,15 @@ public class ReaderController {
         return "error";
     }
 
+    @RequestMapping(value = "reader_listbook",method = RequestMethod.GET)
+    //@ResponseBody
+    public String listBook1(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model){
+        ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
+        model.addAttribute("bookList", response.getData().getList());
+        return "listbook";
+    }
+
+
     @RequestMapping(value = "updateReaderHtml.do",method = RequestMethod.GET)
     public String updateReaderHtml(){
         return "updateReader";
