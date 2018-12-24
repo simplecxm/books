@@ -1,8 +1,9 @@
 package com.lj.service;
 
+import com.lj.common.ServerResponse;
 import com.lj.pojo.Manager;
 
 public interface IManagerService {
 
-    Manager mlogin(String mname,String mpwd);
+    ServerResponse<Manager> mlogin(String mname, String mpwd);
 }

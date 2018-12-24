@@ -74,6 +74,6 @@
     select
     <include refid="Base_Column_List"/>
     from manager
-    where mname=#{mname}and mpwd=#{mpwd}
+    where mname=#{mname} and mpwd=#{mpwd}
   </select>
 </mapper>

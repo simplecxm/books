@@ -1,6 +1,7 @@
 package com.lj.service.impl;
 
 
+import com.lj.common.ServerResponse;
 import com.lj.dao.ManagerMapper;
 import com.lj.pojo.Manager;
 import com.lj.service.IManagerService;
@@ -14,11 +15,11 @@ public class ManagerServiceImpl implements IManagerService {
     @Autowired
     private ManagerMapper managerMapper;
 
-    public Manager mlogin(String mname,String mpwd){
+    public ServerResponse<Manager> mlogin(String mname,String mpwd){
         Manager manager = managerMapper.mlogin(mname,mpwd);
-        if(!manager.equals(null)){
-            return manager;
+        if (manager!=null){
+            return ServerResponse.createBySuccess("登录成功",manager);
         }
-        return null;
+        return ServerResponse.createByErrorMessage("登录失败");
     }
 }
