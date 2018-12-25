@@ -27,6 +27,7 @@ public class RecordController {
         if (response.isSuccess()){
             model.addAttribute("isbn", record.getBisbn());
             model.addAttribute("rname", record.getRname());
+            model.addAttribute("indate",record.getIndate());
             return "record/borrow";
         }
         return "error";

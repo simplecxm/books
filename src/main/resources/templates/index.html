@@ -35,37 +35,42 @@
 
             <div class="col-md-8 column">
                 <div class="tab-content">
-                    <div class="tab-pane active" id="panel-1" th:include="showbook2 :: copy">
+                    <div class="tab-pane active" id="panel-1" th:include="reader :: copy_list">
 
                     </div>
                     <div class="tab-pane" id="panel-2">
                         <p>
                             <form action="/register.do" method="get">
-                        <p>账号<input type="text" name="rname"></p>
-                        <p>密码<input type="password" name="rpwd"></p>
-                        <p>年龄<input type="text" name="rage"></p>
+                                <div class="col-xs-4">
+                        <p>账号<input class="form-control" type="text" name="rname"></p>
+                        <p>密码<input class="form-control" type="password" name="rpwd"></p>
+                        <p>年龄<input class="form-control" type="text" name="rage"></p>
                         <p>性别<input type="radio" checked="checked" name="rsex" value="male">男
                             <input type="radio"  name="rsex" value="female">女</p>
 
-                        <p><button>submit</button></p>
+                        <p><button class="btn btn-default">点击注册</button></p>
+                    </div>
                         </form>
                         </p>
                     </div>
                     <div class="tab-pane" id="panel-3">
                         <p>
                             <form action="/login.do" method="get">
-                        <p>rid<input type="text" name="rName"></p>
-                        <p>rpwd<input type="text" name="rPwd"></p>
-                        <p><button>submit</button></p>
-                        </form>
+                                <div class="col-xs-4">
+                        <p>读者账号<input class="form-control" type="text" name="rName"></p>
+                        <p>读者密码<input class="form-control" type="password" name="rPwd"></p>
+                        <p><button class="btn btn-default">读者登录</button></p>
+                    </div></form>
                         </p>
                     </div>
                     <div class="tab-pane" id="panel-4">
                         <p>
                             <form action="/manager.do" method="get">
-                        <p>账号<input type="text" name="mname"/></p>
-                        <p>密码<input type="text" name="mpwd"></p>
-                        <p><button>submit</button></p>
+                                <div class="col-xs-4">
+                        <p>管理员账号<input class="form-control" type="text" name="mname"/></p>
+                        <p>管理员密码<input class="form-control" type="password" name="mpwd"></p>
+                        <p><button class="btn btn-default">管理员登录</button></p>
+                                </div>
                         </form>
                         </p>
                     </div>

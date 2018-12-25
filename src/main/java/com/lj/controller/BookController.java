@@ -51,12 +51,13 @@ public class BookController {
     @RequestMapping(value = "listBookHtml.do", method = RequestMethod.GET)
     public String listBookHtml(){return "listBook";}
 
-    @RequestMapping(value = "indexHtml",method = RequestMethod.GET)
-    //@ResponseBody
-    public String listBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model){
-        ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
+    @RequestMapping(value = "/listBook.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse<PageInfo> listBook(/*@RequestParam(value = "pageNum",defaultValue = "1") */int pageNum, /*@RequestParam(value = "pageSize",defaultValue = "5") */int pageSize, Model model){
+        /*ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
         model.addAttribute("bookList", response.getData().getList());
-        return "index";
+        return "index";*/
+        return iBookService.listBook(pageNum,pageSize);
     }
 
 

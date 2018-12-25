@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -48,14 +49,16 @@ public class ReaderController {
 
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
     //@ResponseBody
-    public String login(String rName, String rPwd, /*HttpSession session, */Model model, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, HttpSession session) {//ServerResponse<Reader>
+    public String login(String rName, String rPwd, /*HttpSession session, */Model model, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, HttpServletRequest session) {//ServerResponse<Reader>
         ServerResponse<com.lj.pojo.Reader> response = iReaderService.login(rName, rPwd);
         if(response.isSuccess()){
             session.setAttribute(Const.Reader.CURRENT_READER,response.getData().getRname());
             model.addAttribute("username",response.getData().getRname());
+            session.getSession().setAttribute("username",rName);
             ServerResponse<PageInfo> response1 = iBookService.listBook(pageNum,pageSize);
             model.addAttribute("bookList", response1.getData().getList());
             model.addAttribute("rName",rName);
+
             //return response;
             return "reader";
         }

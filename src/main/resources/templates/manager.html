@@ -38,37 +38,39 @@
                             <a href="/indexHtml"><button class="btn btn-default">退出登录</button></a>
                         </li>
                     </ul></div></div>
-            <div class="tab-content col-md-6 column">
-                <div class="tab-pane active" id="panel-1">
-                    <p>
-                        I'm in Section 1.
-                    </p>
+            <div class="tab-content col-md-8 column">
+                <div class="tab-pane active" id="panel-1" th:include="reader :: copy_list">
+
                 </div>
                 <div class="tab-pane" id="panel-2">
                     <p>
                         <form action="/updateBook.do" method="post">
-                    <p>isbn<input type="text" name="bisbn"></p>
-                    <p>书名<input type="text" name="bname"></p>
-                    <p>作者<input type="text" name="bwriter"></p>
-                    <p>数量<input type="text" name="bnumber"></p>
-                    <p>类别<input type="text" name="bsort"></p>
-                    <p>出版社<input type="text" name="bpub"></p>
-                    <p>价钱<input type="text" name="bprice"></p>
-                    <p>介绍<input type="text" name="bintro"></p>
-                    <p>图片<input type="file" name="bpic"></p>
-                    <p><input type="submit" value="submit"/></p>
+                            <div class="col-xs-4">
+                    <p>isbn<input class="form-control" type="text" name="bisbn"></p>
+                    <p>书名<input class="form-control" type="text" name="bname"></p>
+                    <p>作者<input class="form-control" type="text" name="bwriter"></p>
+                    <p>数量<input class="form-control" type="text" name="bnumber"></p>
+                    <p>类别<input class="form-control" type="text" name="bsort"></p>
+                    <p>出版社<input class="form-control" type="text" name="bpub"></p>
+                    <p>价钱<input class="form-control" type="text" name="bprice"></p>
+                    <p>介绍<input class="form-control" type="text" name="bintro"></p>
+                    <!--<p>图片<input type="file" name="bpic"></p>-->
+                    <p><input class="btn btn-default" type="submit" value="修改图书信息"/></p>
+                </div>
                     </form>
                     </p>
                 </div>
                 <div class="tab-pane" id="panel-3">
                     <p>
                         <form action="/updateReader.do" method="post">
-                    <p>账号<input type="text" name="rname"></p>
-                    <p>密码<input type="text" name="rpwd"></p>
-                    <p>年龄<input type="text" name="rage"></p>
+                            <div class="col-xs-4">
+                    <p>账号<input class="form-control" type="text" name="rname"></p>
+                    <p>密码<input class="form-control" type="text" name="rpwd"></p>
+                    <p>年龄<input class="form-control" type="text" name="rage"></p>
                     <p>性别<input type="radio" checked="checked" name="rsex" value="male">男
                         <input type="radio"  name="rsex" value="female">女</p>
-                    <button type="submit">更改</button>
+                    <button class="btn btn-default" type="submit">更改读者信息</button>
+                </div>
                 </form>
                     </p>
                 </div>
@@ -87,8 +89,8 @@
                 <div class="tab-pane" id="panel-6">
                     <p>
                         <form action="/fineReader.do" method="get">
-                    <input name="rname">
-                    <button type="submit">查询</button>
+                    <input class="form-control" name="rname">
+                    <button class="btn btn-default" type="submit">查询</button>
                 </form>
                     </p>
                 </div>

@@ -107,7 +107,7 @@
     insert into record (id, bisbn, rname,
       outdate, indate, penalty)
     values (null, #{bisbn,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR},
-      now(), DATE_ADD(now(), INTERVAL 1 Month), #{penalty,jdbcType=DECIMAL})
+      now(), DATE_ADD(now(), INTERVAL 1 Month), 0)
   </insert>
 
 
