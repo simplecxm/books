@@ -109,6 +109,11 @@
     values (null, #{bisbn,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR},
       now(), DATE_ADD(now(), INTERVAL 1 Month), 0)
   </insert>
+  <select id="reader_record" resultType="com.lj.pojo.Record">
+    select bisbn,rname,outdate,indate,penalty
+    from  record
+    where rname={#rname}
+  </select>
 
 
 </mapper>

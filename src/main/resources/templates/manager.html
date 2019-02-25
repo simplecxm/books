@@ -13,7 +13,7 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="col-md-2 column">
-
+                你好，<a th:text="${mname}"></a>
                 <div class="tabbable" id="tabs-318962">
                     <ul class="nav navbar-btn">
                         <li class="active">
@@ -75,11 +75,14 @@
                     </p>
                 </div>
                 <div class="tab-pane" id="panel-4">
-                    <p>
+
                         <form action="/record.do" method="get">
-                    <p></p>
+                    图书isbn<input name="bisbn"><p></p>
+                   <p> 读者id<input name="rname"></p>
+
+                    <button type="submit" value="办理借阅">办理借阅</button>
                 </form>
-                    </p>
+
                 </div>
                 <div class="tab-pane" id="panel-5">
                     <p>

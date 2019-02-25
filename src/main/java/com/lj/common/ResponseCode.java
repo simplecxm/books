@@ -1,7 +1,7 @@
 package com.lj.common;
 
 /**
- * Create by S I M P L E on 2018/03/30 00:02:08
+ * 返回代码数据封装
  */
 public enum  ResponseCode {
     SUCCESS(0, "SUCCESS"),

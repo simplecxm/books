@@ -8,6 +8,8 @@ import com.lj.service.IRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("iRecordService")
 public class RecordServiceImpl implements IRecordService {
     @Autowired
@@ -26,6 +28,11 @@ public class RecordServiceImpl implements IRecordService {
             return ServerResponse.createByErrorMessage("更新图书失败");
         }
         return ServerResponse.createByErrorMessage("结束失败");
+    }
+
+    public List<Record> reader_record(String rname){
+        return recordMapper.reader_record(rname);
+
     }
 
 }

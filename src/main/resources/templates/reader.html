@@ -14,8 +14,8 @@
         <div class="col-md-12 column">
             <div class="col-md-2 column">
                 你好,
-                <p th:text="${username}"></p>
-                <p th:text="${rName}"></p>
+                <a th:text="${username}"></a>
+                <!--<p th:text="${rName}"></p>-->
                 <div class="tabbable" id="tabs-318962">
                     <ul class="nav navbar-btn">
                         <li>
@@ -30,7 +30,7 @@
                             <a href="#panel-3" data-toggle="tab"><button class="btn btn-default" type="submit">查看借阅记录</button></a>
                         </li>
                         <li>
-                            <a href="/indexHtml"><button class="btn btn-default">退出登录</button></a>
+                            <a href="/listBook.do"><button class="btn btn-default">退出登录</button></a>
                         </li>
                     </ul></div></div>
 
@@ -92,7 +92,25 @@
                         </div>
                         <div class="tab-pane" id="panel-3">
                             <p>
-                                Howdy, I'm in Section 3.
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>isbn</th>
+                                    <th>读者</th>
+                                    <th>借阅日期</th>
+                                    <th>归还日期</th>
+                                    <th>罚金</th>
+                                </tr>
+                                <tr th:each="listbook:${bookList}">
+                                    <td th:text="${listbook.bisbn}">bisbn</td>
+                                    <td th:text="${listbook.bname}">bname</td>
+                                    <td th:text="${listbook.bwriter}">bwriter</td>
+                                    <td th:text="${listbook.bnumber}">bnumber</td>
+                                    <td th:text="${listbook.boutnumber}">boutnumber</td>
+                                    <!--<td th:text="${listbook.bpic}">bpic</td>-->
+
+                                    <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
+                                </tr>
+                            </table>
                             </p>
                         </div>
                         <div class="tab-pane" id="panel-4">

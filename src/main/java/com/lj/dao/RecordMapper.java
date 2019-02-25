@@ -2,6 +2,8 @@ package com.lj.dao;
 
 import com.lj.pojo.Record;
 
+import java.util.List;
+
 public interface RecordMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,5 +18,7 @@ public interface RecordMapper {
     int updateByPrimaryKey(Record record);
 
     int borrow(Record record);
+
+    List<Record> reader_record(String rname);
 
 }

@@ -4,8 +4,10 @@ import com.github.pagehelper.PageInfo;
 import com.lj.common.Const;
 import com.lj.common.ServerResponse;
 import com.lj.pojo.Reader;
+import com.lj.pojo.Record;
 import com.lj.service.IBookService;
 import com.lj.service.IReaderService;
+import com.lj.service.IRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,9 @@ public class ReaderController {
 
     @Autowired
     private IBookService iBookService;
+
+    @Autowired
+    private IRecordService iRecordService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(){
@@ -49,7 +54,10 @@ public class ReaderController {
 
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
     //@ResponseBody
-    public String login(String rName, String rPwd, /*HttpSession session, */Model model, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, HttpServletRequest session) {//ServerResponse<Reader>
+    public String login(String rName, String rPwd, /*HttpSession session, */Model model,
+                        @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
+                        @RequestParam(value = "pageSize",defaultValue = "5") int pageSize,
+                        HttpServletRequest session) {//ServerResponse<Reader>
         ServerResponse<com.lj.pojo.Reader> response = iReaderService.login(rName, rPwd);
         if(response.isSuccess()){
             session.setAttribute(Const.Reader.CURRENT_READER,response.getData().getRname());
@@ -58,6 +66,10 @@ public class ReaderController {
             ServerResponse<PageInfo> response1 = iBookService.listBook(pageNum,pageSize);
             model.addAttribute("bookList", response1.getData().getList());
             model.addAttribute("rName",rName);
+
+            List<Record> records = iRecordService.reader_record(rName);
+            model.addAttribute("recordlist",response.getData().getRname());
+
 
             //return response;
             return "reader";
@@ -120,6 +132,7 @@ public class ReaderController {
         }
         return ServerResponse.createByErrorMessage("请登录");
     }
+
 
     /*@RequestMapping(value = "readerHtml",method = RequestMethod.GET)
     //@ResponseBody

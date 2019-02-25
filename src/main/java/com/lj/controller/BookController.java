@@ -20,7 +20,7 @@ public class BookController {
     @Autowired
     private IBookService iBookService;
 
-    @RequestMapping(value = "indexHtml1", method = RequestMethod.GET)
+ /*   @RequestMapping(value = "indexHtml1", method = RequestMethod.GET)
     public String indexHtml(){ return "index"; }
 
     @RequestMapping(value = "headerHtml.do", method = RequestMethod.GET)
@@ -31,7 +31,7 @@ public class BookController {
 
     @RequestMapping(value = "book.do", method = RequestMethod.POST)
     @ResponseBody
-    public String addBooks(Book book){ return iBookService.addBooks(book);}
+    public String addBooks(Book book){ return iBookService.addBooks(book);}*/
 
     @RequestMapping(value = "updateBookHtml.do",method = RequestMethod.GET)
     public String updateBookHtml(){return "updateBook";}
@@ -52,12 +52,12 @@ public class BookController {
     public String listBookHtml(){return "listBook";}
 
     @RequestMapping(value = "/listBook.do",method = RequestMethod.GET)
-    @ResponseBody
-    public ServerResponse<PageInfo> listBook(/*@RequestParam(value = "pageNum",defaultValue = "1") */int pageNum, /*@RequestParam(value = "pageSize",defaultValue = "5") */int pageSize, Model model){
-        /*ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
+    //@ResponseBody
+    public String listBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model){
+        ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
         model.addAttribute("bookList", response.getData().getList());
-        return "index";*/
-        return iBookService.listBook(pageNum,pageSize);
+        return "index";
+        /*return iBookService.listBook(pageNum,pageSize);*/
     }
 
 
