@@ -31,7 +31,7 @@ public class ReaderController {
 
     @Autowired
     private IRecordService iRecordService;
-
+    //例子（可删除）
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(){
 
@@ -45,13 +45,13 @@ public class ReaderController {
 
         return iReaderService.register(reader);
     }
-
+//例子（可删除）
     @RequestMapping(value = "loginHtml", method = RequestMethod.GET)
     public String loginHtml(){
 
         return "login";
     }
-
+//分界
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
     //@ResponseBody
     public String login(String rName, String rPwd, /*HttpSession session, */Model model,

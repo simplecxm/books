@@ -69,8 +69,26 @@
                                             <!--<td th:text="${listbook.bpic}">bpic</td>-->
 
                                             <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
+
+                                        </tr>
+                                        <!--分页导航-->
+                                        <tr>
+                                            <td><a th:href="@{/listBook.do?pageNum=1}">首页</a></td>
+                                            <td th:switch="${pageNum}">
+                                                <p th:case="1"> <a th:href="@{/listBook.do?pageNum=1}">上一页</a></p>
+                                                <p th:case="*"><a th:href="@{/listBook.do(pageNum=${pageNum-1})}">上一页</a></p>
+                                            </td>
+                                            <td th:switch="${pageNum}">
+                                                <p th:case="${totalPages}"><a th:href="@{/listBook.do(pageNum=${totalPages})}">下一页</a></p>
+                                                <p th:case="*"><a th:href="@{/listBook.do(pageNum=${pageNum+1})}">下一页</a></p>
+                                            </td>
+                                            <td><a th:href="@{/listBook.do(pageNum=${totalPages})}">尾页</a></td>
                                         </tr>
                                     </table>
+
+
+
+
                                 </li>
                             </ol>
 
