@@ -1,8 +1,10 @@
 package com.lj.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.lj.common.Const;
 import com.lj.common.ServerResponse;
 import com.lj.pojo.Book;
+import com.lj.pojo.Reader;
 import com.lj.service.IBookService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -69,11 +72,15 @@ public class BookController {
     //此为读者页面的图书分页
     @RequestMapping(value = "/listBook_reader.do",method = RequestMethod.GET)
     //pageNum是第几页，pageSize是每页显示几条数据
-    public String listBook2(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model){
+    public String listBook2(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model, HttpSession session){
+        Reader reader = (Reader) session.getAttribute(Const.Reader.CURRENT_READER);
+        if (null == reader){
+            return "error";
+        }
         ServerResponse<PageInfo> response1 = iBookService.listBook2(pageNum,pageSize);
         model.addAttribute("bookList", response1.getData().getList());
         model.addAttribute("bookList", response1.getData().getList());
-
+        model.addAttribute("username",reader.getRname());
 
         //获取分页数据
         model.addAttribute("ServerResponse",response1);
