@@ -1,6 +1,7 @@
 package com.lj.dao;
 
 import com.lj.pojo.Record;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,6 +20,6 @@ public interface RecordMapper {
 
     int borrow(Record record);
 
-    List<Record> reader_record(String rname);
+    List<Record> reader_record(String rName);
 
 }

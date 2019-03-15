@@ -51,19 +51,35 @@ public class BookController {
     @RequestMapping(value = "listBookHtml.do", method = RequestMethod.GET)
     public String listBookHtml(){return "listBook";}
 
-    //分页显示
+    //分页显示,此为首页分页
     @RequestMapping(value = "/listBook.do",method = RequestMethod.GET)
-    //@ResponseBody
     //pageNum是第几页，pageSize是每页显示几条数据
     public String listBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model){
         ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
         model.addAttribute("bookList", response.getData().getList());
 
-//获取分页数据
+    //获取分页数据
         model.addAttribute("ServerResponse",response);
         model.addAttribute("pageNum",pageNum);
         model.addAttribute("totalPages",response.getData().getPages());
         return "index";
+        /*return iBookService.listBook(pageNum,pageSize);*/
+    }
+
+    //此为读者页面的图书分页
+    @RequestMapping(value = "/listBook_reader.do",method = RequestMethod.GET)
+    //pageNum是第几页，pageSize是每页显示几条数据
+    public String listBook2(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model){
+        ServerResponse<PageInfo> response1 = iBookService.listBook2(pageNum,pageSize);
+        model.addAttribute("bookList", response1.getData().getList());
+        model.addAttribute("bookList", response1.getData().getList());
+
+
+        //获取分页数据
+        model.addAttribute("ServerResponse",response1);
+        model.addAttribute("pageNum",pageNum);
+        model.addAttribute("totalPages",response1.getData().getPages());
+        return "reader";
         /*return iBookService.listBook(pageNum,pageSize);*/
     }
 

@@ -1,5 +1,7 @@
 package com.lj.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lj.common.ServerResponse;
 import com.lj.dao.BookMapper;
 import com.lj.dao.RecordMapper;
@@ -30,8 +32,13 @@ public class RecordServiceImpl implements IRecordService {
         return ServerResponse.createByErrorMessage("结束失败");
     }
 
-    public List<Record> reader_record(String rname){
-        return recordMapper.reader_record(rname);
+    public ServerResponse<PageInfo> reader_record(int pageNum1,int pageSize1,String rName){
+        PageHelper.startPage(pageNum1,pageSize1);
+        List<Record> records = recordMapper.reader_record(rName);
+        PageInfo<Record> pageInfo = new PageInfo<>(records);
+        return ServerResponse.createBySuccess("success",pageInfo);
+
+
 
     }
 

@@ -15,7 +15,7 @@
             <div class="col-md-2 column">
                 你好,
                 <a th:text="${username}"></a>
-                <!--<p th:text="${rName}"></p>-->
+                <p th:text="${rName}"></p>
                 <div class="tabbable" id="tabs-318962">
                     <ul class="nav navbar-btn">
                         <li>
@@ -56,7 +56,7 @@
 
                                             <!--<th>图片</th>-->
                                         </tr>
-                                        <tr th:each="listbook:${bookList}">
+                                        <tr th:each="listbook:${bookList}"><!--listbook随便命名-->
                                             <td th:text="${listbook.bisbn}">bisbn</td>
                                             <td th:text="${listbook.bname}">bname</td>
                                             <td th:text="${listbook.bwriter}">bwriter</td>
@@ -73,16 +73,16 @@
                                         </tr>
                                         <!--分页导航-->
                                         <tr>
-                                            <td><a th:href="@{/listBook.do?pageNum=1}">首页</a></td>
+                                            <td><a th:href="@{/listBook_reader.do?pageNum=1}">首页</a></td>
                                             <td th:switch="${pageNum}">
-                                                <p th:case="1"> <a th:href="@{/listBook.do?pageNum=1}">上一页</a></p>
-                                                <p th:case="*"><a th:href="@{/listBook.do(pageNum=${pageNum-1})}">上一页</a></p>
+                                                <p th:case="1"> <a th:href="@{/listBook_reader.do?pageNum=1}">上一页</a></p>
+                                                <p th:case="*"><a th:href="@{/listBook_reader.do(pageNum=${pageNum})}">上一页</a></p>
                                             </td>
                                             <td th:switch="${pageNum}">
-                                                <p th:case="${totalPages}"><a th:href="@{/listBook.do(pageNum=${totalPages})}">下一页</a></p>
-                                                <p th:case="*"><a th:href="@{/listBook.do(pageNum=${pageNum+1})}">下一页</a></p>
+                                                <p th:case="${totalPages}"><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">下一页</a></p>
+                                                <p th:case="*"><a th:href="@{/listBook_reader.do(pageNum=${pageNum+1})}">下一页</a></p>
                                             </td>
-                                            <td><a th:href="@{/listBook.do(pageNum=${totalPages})}">尾页</a></td>
+                                            <td><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">尾页</a></td>
                                         </tr>
                                     </table>
 
@@ -118,16 +118,28 @@
                                     <th>归还日期</th>
                                     <th>罚金</th>
                                 </tr>
-                                <tr th:each="listbook:${bookList}">
-                                    <td th:text="${listbook.bisbn}">bisbn</td>
-                                    <td th:text="${listbook.bname}">bname</td>
-                                    <td th:text="${listbook.bwriter}">bwriter</td>
-                                    <td th:text="${listbook.bnumber}">bnumber</td>
-                                    <td th:text="${listbook.boutnumber}">boutnumber</td>
+                                <tr th:each="reader_record:${recordList}">
+                                    <td th:text="${reader_record.bisbn}">bisbn</td>
+                                    <td th:text="${reader_record.rname}">rname</td>
+                                    <td th:text="${reader_record.outdate}">outdate</td>
+                                    <td th:text="${reader_record.indate}">indate</td>
+                                    <td th:text="${reader_record.penalty}">boutnumber</td>
                                     <!--<td th:text="${listbook.bpic}">bpic</td>-->
 
                                     <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
                                 </tr>
+                                <!--<tr>
+                                    <td><a th:href="@{/reader_record.do?pageNum1=1}">首页</a></td>
+                                    <td th:switch="${pageNum1}">
+                            <p th:case="1"> <a th:href="@{/reader_record.do?pageNum1=1}">上一页</a></p>
+                            <p th:case="*"><a th:href="@{/reader_record.do(pageNum1=${pageNum1-1})}">上一页</a></p>
+                            </td>
+                            <td th:switch="${pageNum1}">
+                                <p th:case="${totalPages2}"><a th:href="@{/reader_record.do(pageNum1=${totalPages2})}">下一页</a></p>
+                                <p th:case="*"><a th:href="@{/reader_record.do(pageNum1=${pageNum1+1})}">下一页</a></p>
+                            </td>
+                            <td><a th:href="@{/reader_record.do(pageNum1=${totalPages2})}">尾页</a></td>
+                            </tr>-->
                             </table>
                             </p>
                         </div>

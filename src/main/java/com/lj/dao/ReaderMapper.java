@@ -28,5 +28,7 @@ public interface ReaderMapper {
 
     List<Reader> findReader(String rname);
 
+    String record_name(@Param("rName")String rName);
+
 
 }

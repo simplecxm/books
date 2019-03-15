@@ -43,13 +43,19 @@ public class BookServiceImpl implements IBookService {
             return "fail";
         }
     }
-
+//首页
    public ServerResponse<PageInfo> listBook(int pageNum,int pageSize){
        PageHelper.startPage(pageNum,pageSize);
        List<Book> books = bookMapper.bookList();
        PageInfo<Book> pageInfo = new PageInfo<>(books);
        return ServerResponse.createBySuccess("success",pageInfo);
    }
+    public ServerResponse<PageInfo> listBook2(int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<Book> books = bookMapper.bookList();
+        PageInfo<Book> pageInfo = new PageInfo<>(books);
+        return ServerResponse.createBySuccess("success",pageInfo);
+    }
    public List<Book> findBook(Integer bisbn){
     return bookMapper.findBook(bisbn);
    }

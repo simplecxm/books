@@ -54,22 +54,27 @@ public class ReaderController {
 //分界
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
     //@ResponseBody
-    public String login(String rName, String rPwd, /*HttpSession session, */Model model,
+    public String login(String rName, String rPwd, HttpSession session, Model model/*,
                         @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
-                        @RequestParam(value = "pageSize",defaultValue = "5") int pageSize,
-                        HttpServletRequest session) {//ServerResponse<Reader>
+                        @RequestParam(value = "pageSize",defaultValue = "5") int pageSize*//*,
+                        HttpServletRequest session*/) {//ServerResponse<Reader>
         ServerResponse<com.lj.pojo.Reader> response = iReaderService.login(rName, rPwd);
         if(response.isSuccess()){
-            session.setAttribute(Const.Reader.CURRENT_READER,response.getData().getRname());
+            session.setAttribute(Const.Reader.CURRENT_READER,response.getData());
             model.addAttribute("username",response.getData().getRname());
-            session.getSession().setAttribute("username",rName);
-            ServerResponse<PageInfo> response1 = iBookService.listBook(pageNum,pageSize);
-            model.addAttribute("bookList", response1.getData().getList());
+            /*session.getSession().setAttribute("username",rName);*/
+            ServerResponse<PageInfo> listBook = iBookService.listBook2(1,5);
+            model.addAttribute("bookList", listBook.getData().getList());
             model.addAttribute("rName",rName);
 
-            List<Record> records = iRecordService.reader_record(rName);
-            model.addAttribute("recordlist",response.getData().getRname());
+/*            ServerResponse<PageInfo> records = iRecordService.reader_record(pageNum,pageSize,rName);
+            model.addAttribute("recordList",records.getData().getList());
+            model.addAttribute("totalPages1",records.getData().getPages());*/
 
+/*//获取分页数据
+            model.addAttribute("ServerResponse",response1);
+            model.addAttribute("pageNum1",pageNum);
+            model.addAttribute("totalPages1",response1.getData().getPages());*/
 
             //return response;
             return "reader";
@@ -77,14 +82,14 @@ public class ReaderController {
         //return response;
         return "error";
     }
-
+/*
     @RequestMapping(value = "reader_listbook",method = RequestMethod.GET)
     //@ResponseBody
     public String listBook1(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model){
         ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
         model.addAttribute("bookList", response.getData().getList());
         return "listbook";
-    }
+    }*/
 
 
     @RequestMapping(value = "updateReaderHtml.do",method = RequestMethod.GET)
