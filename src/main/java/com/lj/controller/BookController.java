@@ -72,15 +72,20 @@ public class BookController {
     //此为读者页面的图书分页
     @RequestMapping(value = "/listBook_reader.do",method = RequestMethod.GET)
     //pageNum是第几页，pageSize是每页显示几条数据
-    public String listBook2(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model, HttpSession session){
+    public String getAllBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model, HttpSession session){
         Reader reader = (Reader) session.getAttribute(Const.Reader.CURRENT_READER);
         if (null == reader){
             return "error";
         }
-        ServerResponse<PageInfo> response1 = iBookService.listBook2(pageNum,pageSize);
-        model.addAttribute("bookList", response1.getData().getList());
-        model.addAttribute("bookList", response1.getData().getList());
+
+        ServerResponse<PageInfo> response1 = iBookService.getAllBook(pageNum,pageSize);
+        //获取数据
+        model.addAttribute("bookList", response1.getData());
         model.addAttribute("username",reader.getRname());
+        model.addAttribute("rAge",reader.getRage());
+        model.addAttribute("rpwd",reader.getRpwd());
+
+        /*model.addAttribute("rName",reader.getRname());*/
 
         //获取分页数据
         model.addAttribute("ServerResponse",response1);
@@ -90,6 +95,8 @@ public class BookController {
         /*return iBookService.listBook(pageNum,pageSize);*/
     }
 
+
+//此为图书管理员图书浏览页面分页
 
 
 /*    @RequestMapping(value = "findBookHtml.do", method = RequestMethod.GET)

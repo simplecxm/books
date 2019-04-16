@@ -11,7 +11,7 @@ public interface IBookService {
     String updateBook(Book book);
     String delete(Integer bIsbn);
     ServerResponse<PageInfo> listBook(int pageNum, int pageSize);
-    ServerResponse<PageInfo> listBook2(int pageNum, int pageSize);
+    ServerResponse<PageInfo> getAllBook(int pageNum, int pageSize);
 
     /*单个查询，已合并
     List<Book> findBook(Integer bisbn);

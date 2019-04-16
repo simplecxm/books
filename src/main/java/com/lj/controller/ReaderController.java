@@ -54,17 +54,21 @@ public class ReaderController {
 //分界
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
     //@ResponseBody
-    public String login(String rName, String rPwd, HttpSession session, Model model/*,
+    public String login(String rName, String rPwd, HttpSession session, Model model) {//ServerResponse<Reader>
+        /*,
                         @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
                         @RequestParam(value = "pageSize",defaultValue = "5") int pageSize*//*,
-                        HttpServletRequest session*/) {//ServerResponse<Reader>
-        ServerResponse<com.lj.pojo.Reader> response = iReaderService.login(rName, rPwd);
-        if(response.isSuccess()){
-            session.setAttribute(Const.Reader.CURRENT_READER,response.getData());
-            model.addAttribute("username",response.getData().getRname());
+                        HttpServletRequest session*/
+        ServerResponse<com.lj.pojo.Reader> reader = iReaderService.login(rName, rPwd);
+        if(reader.isSuccess()){
+            session.setAttribute(Const.Reader.CURRENT_READER,reader.getData());
+
+            model.addAttribute("username",reader.getData().getRname());
+            model.addAttribute("rAge",reader.getData().getRage());
+            model.addAttribute("rpwd",reader.getData().getRpwd());
             /*session.getSession().setAttribute("username",rName);*/
-            ServerResponse<PageInfo> listBook = iBookService.listBook2(1,5);
-            model.addAttribute("bookList", listBook.getData().getList());
+            ServerResponse<PageInfo> response = iBookService.getAllBook(1,5);
+            model.addAttribute("bookList", response.getData());
             model.addAttribute("rName",rName);
 
 /*            ServerResponse<PageInfo> records = iRecordService.reader_record(pageNum,pageSize,rName);

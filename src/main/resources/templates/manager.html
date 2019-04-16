@@ -39,8 +39,59 @@
                         </li>
                     </ul></div></div>
             <div class="tab-content col-md-8 column">
-                <div class="tab-pane active" id="panel-1" th:include="reader :: copy_list">
+                <div class="tab-pane active" id="panel-1">
+                <ol>
+                    <li>浏览图书：
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>isbn</th>
+                                <th>书名</th>
+                                <th>作者</th>
+                                <th>库存数量</th>
+                                <th>借出数量</th>
+                                <th>分类</th>
+                                <th>出版社</th>
+                                <th>价格</th>
+                                <th>介绍</th>
+                                <!--<th>图片</th>-->
 
+                                <!--<th>图片</th>-->
+                            </tr>
+                            <tr th:each="listbook:${bookList}"><!--listbook随便命名-->
+                                <td th:text="${listbook.bisbn}">bisbn</td>
+                                <td th:text="${listbook.bname}">bname</td>
+                                <td th:text="${listbook.bwriter}">bwriter</td>
+                                <td th:text="${listbook.bnumber}">bnumber</td>
+                                <td th:text="${listbook.boutnumber}">boutnumber</td>
+                                <td th:text="${listbook.bsort}">bsort</td>
+                                <td th:text="${listbook.bpub}">bpub</td>
+                                <td th:text="${listbook.bprice}">bprice</td>
+                                <td th:text="${listbook.bintro}">bintro</td>
+                                <!--<td th:text="${listbook.bpic}">bpic</td>-->
+
+                                <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
+
+                            </tr>
+                           <!-- &lt;!&ndash;分页导航&ndash;&gt;
+                            <tr>
+                                <td><a th:href="@{/listBook_reader.do?pageNum=1}">首页</a></td>
+                                <td th:switch="${pageNum}">
+                                    <p th:case="1"> <a th:href="@{/listBook_reader.do?pageNum=1}">上一页</a></p>
+                                    <p th:case="*"><a th:href="@{/listBook_reader.do(pageNum=${pageNum-1})}">上一页</a></p>
+                                </td>
+                                <td th:switch="${pageNum}">
+                                    <p th:case="${totalPages}"><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">下一页</a></p>
+                                    <p th:case="*"><a th:href="@{/listBook_reader.do(pageNum=${pageNum+1})}">下一页</a></p>
+                                </td>
+                                <td><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">尾页</a></td>
+                            </tr>-->
+                        </table>
+
+
+
+
+                    </li>
+                </ol>
                 </div>
                 <div class="tab-pane" id="panel-2">
                     <p>
