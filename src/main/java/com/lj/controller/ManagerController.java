@@ -34,15 +34,17 @@ public class ManagerController {
 
     @RequestMapping(value = "manager.do", method = RequestMethod.GET)
     //@ResponseBody
-    public String manager(String mname, String mpwd, Model model, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", defaultValue = "5") int pageSize, HttpSession session) {
-
-        ServerResponse<com.lj.pojo.Manager> response = iManagerService.mlogin(mname, mpwd);
-        if (response.isSuccess()) {
-            session.setAttribute(Const.Reader.CURRENT_READER, response.getData().getMname());
-            model.addAttribute("mname", response.getData().getMname());
-            ServerResponse<PageInfo> response1 = iBookService.listBook(pageNum, pageSize);
-            model.addAttribute("bookList", response1.getData().getList());
-            model.addAttribute("mname", mname);
+    public String manager(String mname, String mpwd, Model model, HttpSession session) {
+/*
+        @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
+*/
+        ServerResponse<com.lj.pojo.Manager> manager = iManagerService.mlogin(mname, mpwd);
+        if (manager.isSuccess()) {
+            session.setAttribute(Const.Manager.CURRENT_MANAGER, manager.getData());
+            model.addAttribute("mname", manager.getData().getMname());
+            ServerResponse<PageInfo> response = iBookService.listBook(1, 5);
+            model.addAttribute("bookList", response.getData());
+            /*model.addAttribute("mname", mname);*/
             return "manager";
         }
         return "error";

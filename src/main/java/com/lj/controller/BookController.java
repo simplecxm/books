@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.lj.common.Const;
 import com.lj.common.ServerResponse;
 import com.lj.pojo.Book;
+import com.lj.pojo.Manager;
 import com.lj.pojo.Reader;
 import com.lj.service.IBookService;
 import org.apache.ibatis.annotations.Param;
@@ -78,7 +79,7 @@ public class BookController {
             return "error";
         }
 
-        ServerResponse<PageInfo> response1 = iBookService.getAllBook(pageNum,pageSize);
+        ServerResponse<PageInfo> response1 = iBookService.listBook(pageNum,pageSize);
         //获取数据
         model.addAttribute("bookList", response1.getData());
         model.addAttribute("username",reader.getRname());
@@ -97,7 +98,29 @@ public class BookController {
 
 
 //此为图书管理员图书浏览页面分页
+    @RequestMapping(value = "/listBook_manager.do",method = RequestMethod.GET)
+    //pageNum是第几页，pageSize是每页显示几条数据
+    public String getAllBook_manager(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model, HttpSession session){
+        Manager manager = (Manager) session.getAttribute(Const.Manager.CURRENT_MANAGER);
+        if (null == manager){
+            return "error";
+        }
 
+        ServerResponse<PageInfo> response = iBookService.listBook(pageNum,pageSize);
+        //获取数据
+        model.addAttribute("bookList", response.getData());
+        model.addAttribute("mname",manager.getMname());
+
+
+        /*model.addAttribute("rName",reader.getRname());*/
+
+        //获取分页数据
+        model.addAttribute("ServerResponse",response);
+        model.addAttribute("pageNum",pageNum);
+        model.addAttribute("totalPages",response.getData().getPages());
+        return "manager";
+        /*return iBookService.listBook(pageNum,pageSize);*/
+    }
 
 /*    @RequestMapping(value = "findBookHtml.do", method = RequestMethod.GET)
     public String findBookHtml(){return "findBook";}

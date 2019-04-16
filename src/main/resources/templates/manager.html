@@ -57,16 +57,16 @@
 
                                 <!--<th>图片</th>-->
                             </tr>
-                            <tr th:each="listbook:${bookList}"><!--listbook随便命名-->
-                                <td th:text="${listbook.bisbn}">bisbn</td>
-                                <td th:text="${listbook.bname}">bname</td>
-                                <td th:text="${listbook.bwriter}">bwriter</td>
-                                <td th:text="${listbook.bnumber}">bnumber</td>
-                                <td th:text="${listbook.boutnumber}">boutnumber</td>
-                                <td th:text="${listbook.bsort}">bsort</td>
-                                <td th:text="${listbook.bpub}">bpub</td>
-                                <td th:text="${listbook.bprice}">bprice</td>
-                                <td th:text="${listbook.bintro}">bintro</td>
+                            <tr th:each="bookList:${bookList.list}"><!--listbook随便命名-->
+                                <td th:text="${bookList.bisbn}">bisbn</td>
+                                <td th:text="${bookList.bname}">bname</td>
+                                <td th:text="${bookList.bwriter}">bwriter</td>
+                                <td th:text="${bookList.bnumber}">bnumber</td>
+                                <td th:text="${bookList.boutnumber}">boutnumber</td>
+                                <td th:text="${bookList.bsort}">bsort</td>
+                                <td th:text="${bookList.bpub}">bpub</td>
+                                <td th:text="${bookList.bprice}">bprice</td>
+                                <td th:text="${bookList.bintro}">bintro</td>
                                 <!--<td th:text="${listbook.bpic}">bpic</td>-->
 
                                 <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
@@ -85,6 +85,24 @@
                                 </td>
                                 <td><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">尾页</a></td>
                             </tr>-->
+                            <!--分页导航-->
+                            <tr>
+                                <td><a th:href="@{/listBook_manager.do?pageNum=1}">首页</a></td>
+                                <td>
+                                    <a th:if="${bookList.isFirstPage}"
+                                       th:href="@{/listBook_manager.do(pageNum=1)}">上一页</a>
+
+                                    <a th:if="${!bookList.isFirstPage}"
+                                       th:href="@{/listBook_manager.do(pageNum=${bookList.pageNum-1})}">上一页</a>
+                                </td>
+                                <td>
+                                    <a th:if="${bookList.isLastPage}"
+                                       th:href="@{/listBook_manager.do(pageNum=${totalPages})}">下一页</a>
+                                    <a th:if="${!bookList.isLastPage}"
+                                       th:href="@{/listBook_manager.do(pageNum=${bookList.pageNum+1})}">下一页</a>
+                                </td>
+                                <td><a th:href="@{/listBook_manager.do(pageNum=${totalPages})}">尾页</a></td>
+                            </tr>
                         </table>
 
 

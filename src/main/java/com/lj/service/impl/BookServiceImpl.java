@@ -47,16 +47,11 @@ public class BookServiceImpl implements IBookService {
    public ServerResponse<PageInfo> listBook(int pageNum,int pageSize){
        PageHelper.startPage(pageNum,pageSize);
        List<Book> books = bookMapper.bookList();
+       //用PageInfo对结果进行包装
        PageInfo<Book> pageInfo = new PageInfo<>(books);
        return ServerResponse.createBySuccess("success",pageInfo);
    }
-    public ServerResponse<PageInfo> getAllBook(int pageNum,int pageSize){
-        PageHelper.startPage(pageNum,pageSize);
-        List<Book> books = bookMapper.bookList();
-        //用PageInfo对结果进行包装
-        PageInfo<Book> pageInfo = new PageInfo<>(books);
-        return ServerResponse.createBySuccess("success",pageInfo);
-    }
+
    public List<Book> findBook(Integer bisbn){
     return bookMapper.findBook(bisbn);
    }

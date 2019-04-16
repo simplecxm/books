@@ -67,7 +67,7 @@ public class ReaderController {
             model.addAttribute("rAge",reader.getData().getRage());
             model.addAttribute("rpwd",reader.getData().getRpwd());
             /*session.getSession().setAttribute("username",rName);*/
-            ServerResponse<PageInfo> response = iBookService.getAllBook(1,5);
+            ServerResponse<PageInfo> response = iBookService.listBook(1,5);
             model.addAttribute("bookList", response.getData());
             model.addAttribute("rName",rName);
 
