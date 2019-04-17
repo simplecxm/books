@@ -68,9 +68,12 @@ public class ReaderController {
             /*session.getSession().setAttribute("username",rName);*/
             ServerResponse<PageInfo> response = iBookService.listBook(1,5);
             model.addAttribute("bookList", response.getData());
-
+            //读者借阅记录
+            iRecordService.penalty();//罚金
             ServerResponse<PageInfo> response1 = iRecordService.reader_record(1,15,reader.getData().getRname());
             model.addAttribute("recordList", response1.getData());
+
+
 /*            ServerResponse<com.lj.pojo.Record> record = iRecordService.reader_record(reader.getData().getRname());
             List<Data> time1=  (List<Data>)(record.getData().getIndate());
             model.addAttribute("recordList", record.getData());

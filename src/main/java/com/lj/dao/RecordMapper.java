@@ -24,4 +24,6 @@ public interface RecordMapper {
 
     List<Record> reader_record(String rName);
 
+    int penalty();
+
 }

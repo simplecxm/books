@@ -31,7 +31,12 @@ public class RecordServiceImpl implements IRecordService {
         }
         return ServerResponse.createByErrorMessage("借书失败");
     }
+    //罚金设置
+    public Integer penalty(){
+        return recordMapper.penalty();
 
+    }
+//读者页面借阅记录显示
     public ServerResponse<PageInfo> reader_record(int pageNum,int pageSize,String rName){
         PageHelper.startPage(pageNum,pageSize);
         List<Record> records = recordMapper.reader_record(rName);
@@ -41,6 +46,11 @@ public class RecordServiceImpl implements IRecordService {
 
 
     }
+
+
+
+
+
 /*    public ServerResponse<Record> reader_record(String rname){
     Record record = recordMapper.reader_record(rname);
         if (record!=null){
