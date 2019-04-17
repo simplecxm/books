@@ -107,6 +107,7 @@
                             </ol>
 
                         </div>
+                        <!--读者信息修改模块-->
                         <div class="tab-pane" id="panel-2">
                             <p>
                                 <form th:action="@{/updateReader.do}" method="post">
@@ -122,6 +123,7 @@
                             </form>
                             </p>
                         </div>
+                        <!--读者借阅记录模块-->
                         <div class="tab-pane" id="panel-3">
                             <p>
                             <table class="table table-bordered">
@@ -132,12 +134,16 @@
                                     <th>归还日期</th>
                                     <th>罚金</th>
                                 </tr>
-                                <tr th:each="reader_record:${recordList}">
-                                    <td th:text="${reader_record.bisbn}">bisbn</td>
-                                    <td th:text="${reader_record.rname}">rname</td>
-                                    <td th:text="${reader_record.outdate}">outdate</td>
-                                    <td th:text="${reader_record.indate}">indate</td>
-                                    <td th:text="${reader_record.penalty}">boutnumber</td>
+                                <tr th:each="recordList:${recordList.list}" >
+                                    <td th:text="${recordList.bisbn}">bisbn</td>
+                                    <td th:text="${recordList.rname}">rname</td>
+                                    <!--<td th:text="${recordList.outdate}">outdate</td>-->
+                                    <!--<td th:text="${recordList.indate}">indate</td>-->
+                                    <td th:text="${#dates.format(recordList.outdate,'yyyy-MM-dd')}">indate</td>
+                                    <td th:text="${#dates.format(recordList.indate,'yyyy-MM-dd')}">indate</td>
+                                    <!--<th:text="${#dates.format(user.birth, 'yyyy-MM-dd HH:mm')}"></p>-->
+
+                            <td th:text="${recordList.penalty}">boutnumber</td>
                                     <!--<td th:text="${listbook.bpic}">bpic</td>-->
 
                                     <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->

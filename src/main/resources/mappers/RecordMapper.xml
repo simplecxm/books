@@ -107,7 +107,7 @@
     insert into record (id, bisbn, rname,
       outdate, indate, penalty)
     values (null, #{bisbn,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR},
-      now(), DATE_ADD(now(), INTERVAL 1 Month), 0)
+      current_date(), DATE_ADD(current_date(), INTERVAL 1 Month), 0)
   </insert>
   <select id="reader_record" resultMap="BaseResultMap">
     select

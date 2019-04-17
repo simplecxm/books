@@ -31,7 +31,7 @@ public class ManagerController {
 
         return "manager";
     }*/
-
+//管理员登录
     @RequestMapping(value = "manager.do", method = RequestMethod.GET)
     //@ResponseBody
     public String manager(String mname, String mpwd, Model model, HttpSession session) {

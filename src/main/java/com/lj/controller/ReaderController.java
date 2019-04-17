@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -52,24 +54,29 @@ public class ReaderController {
         return "login";
     }
 //分界
+    //读者登录
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
     //@ResponseBody
     public String login(String rName, String rPwd, HttpSession session, Model model) {//ServerResponse<Reader>
-        /*,
-                        @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
-                        @RequestParam(value = "pageSize",defaultValue = "5") int pageSize*//*,
-                        HttpServletRequest session*/
+
         ServerResponse<com.lj.pojo.Reader> reader = iReaderService.login(rName, rPwd);
         if(reader.isSuccess()){
             session.setAttribute(Const.Reader.CURRENT_READER,reader.getData());
-
             model.addAttribute("username",reader.getData().getRname());
             model.addAttribute("rAge",reader.getData().getRage());
             model.addAttribute("rpwd",reader.getData().getRpwd());
             /*session.getSession().setAttribute("username",rName);*/
             ServerResponse<PageInfo> response = iBookService.listBook(1,5);
             model.addAttribute("bookList", response.getData());
-            model.addAttribute("rName",rName);
+
+            ServerResponse<PageInfo> response1 = iRecordService.reader_record(1,15,reader.getData().getRname());
+            model.addAttribute("recordList", response1.getData());
+/*            ServerResponse<com.lj.pojo.Record> record = iRecordService.reader_record(reader.getData().getRname());
+            List<Data> time1=  (List<Data>)(record.getData().getIndate());
+            model.addAttribute("recordList", record.getData());
+            model.addAttribute("timeList", record.getData());*/
+
+
 
 /*            ServerResponse<PageInfo> records = iRecordService.reader_record(pageNum,pageSize,rName);
             model.addAttribute("recordList",records.getData().getList());
@@ -86,6 +93,34 @@ public class ReaderController {
         //return response;
         return "error";
     }
+
+    //此为读者页面的图书分页
+    @RequestMapping(value = "/listBook_reader.do",method = RequestMethod.GET)
+    //pageNum是第几页，pageSize是每页显示几条数据
+    public String getAllBook(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "5") int pageSize, Model model, HttpSession session){
+        Reader reader = (Reader) session.getAttribute(Const.Reader.CURRENT_READER);
+        if (null == reader){
+            return "error";
+        }
+
+        ServerResponse<PageInfo> response1 = iBookService.listBook(pageNum,pageSize);
+        //获取数据
+        model.addAttribute("bookList", response1.getData());
+        model.addAttribute("username",reader.getRname());
+        model.addAttribute("rAge",reader.getRage());
+        model.addAttribute("rpwd",reader.getRpwd());
+
+        ServerResponse<PageInfo> response2 = iRecordService.reader_record(1,15,reader.getRname());
+        model.addAttribute("recordList", response2.getData());
+
+        //获取分页数据
+        model.addAttribute("ServerResponse",response1);
+        model.addAttribute("pageNum",pageNum);
+        model.addAttribute("totalPages",response1.getData().getPages());
+        return "reader";
+        /*return iBookService.listBook(pageNum,pageSize);*/
+    }
+
 /*
     @RequestMapping(value = "reader_listbook",method = RequestMethod.GET)
     //@ResponseBody
