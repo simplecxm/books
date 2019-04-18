@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface IRecordService {
     ServerResponse borrow(Record record);
-    /*List<Record> reader_record(String rname);*/
-    ServerResponse<PageInfo> reader_record(int pageNum1, int pageSize1, String rname);
+    /*ServerResponse<Record> reader_record(String rname);*/
+    ServerResponse<PageInfo> reader_record(int pageNum, int pageSize, String rname);
+    Integer penalty();
 }

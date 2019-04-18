@@ -20,6 +20,10 @@ public interface RecordMapper {
 
     int borrow(Record record);
 
+//    Record reader_record(String rName);
+
     List<Record> reader_record(String rName);
+
+    int penalty();
 
 }

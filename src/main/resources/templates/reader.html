@@ -15,6 +15,8 @@
             <div class="col-md-2 column">
                 你好,
                 <p th:text="${username}"></p>
+                <!--<p th:text="${rName}"></p>-->
+
                 <div class="tabbable" id="tabs-318962">
                     <ul class="nav navbar-btn">
                         <li>
@@ -55,34 +57,47 @@
 
                                             <!--<th>图片</th>-->
                                         </tr>
-                                        <tr th:each="listbook:${bookList}"><!--listbook随便命名-->
-                                            <td th:text="${listbook.bisbn}">bisbn</td>
-                                            <td th:text="${listbook.bname}">bname</td>
-                                            <td th:text="${listbook.bwriter}">bwriter</td>
-                                            <td th:text="${listbook.bnumber}">bnumber</td>
-                                            <td th:text="${listbook.boutnumber}">boutnumber</td>
-                                            <td th:text="${listbook.bsort}">bsort</td>
-                                            <td th:text="${listbook.bpub}">bpub</td>
-                                            <td th:text="${listbook.bprice}">bprice</td>
-                                            <td th:text="${listbook.bintro}">bintro</td>
-                                            <!--<td th:text="${listbook.bpic}">bpic</td>-->
+                                        <tr th:each="bookList:${bookList.list}"><!--前bookList随便命名-->
+                                            <td th:text="${bookList.bisbn}">bisbn</td>
+                                            <td th:text="${bookList.bname}">bname</td>
+                                            <td th:text="${bookList.bwriter}">bwriter</td>
+                                            <td th:text="${bookList.bnumber}">bnumber</td>
+                                            <td th:text="${bookList.boutnumber}">boutnumber</td>
+                                            <td th:text="${bookList.bsort}">bsort</td>
+                                            <td th:text="${bookList.bpub}">bpub</td>
+                                            <td th:text="${bookList.bprice}">bprice</td>
+                                            <td th:text="${bookList.bintro}">bintro</td>
+                                            <!--<td th:text="${bookList.bpic}">bpic</td>-->
 
-                                            <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->
+                                            <!--<td>< img th:src="@{${bookList.detail}}" height="100" width="100" alt="image"/></td>-->
 
                                         </tr>
                                         <!--分页导航-->
                                         <tr>
                                             <td><a th:href="@{/listBook_reader.do?pageNum=1}">首页</a></td>
-                                            <td th:switch="${pageNum}">
-                                                <p th:case="1"> <a th:href="@{/listBook_reader.do?pageNum=1}">上一页</a></p>
-                                                <p th:case="*"><a th:href="@{/listBook_reader.do(pageNum=${pageNum})}">上一页</a></p>
+                                            <td>
+                                                <a th:if="${bookList.isFirstPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=1)}">上一页</a>
+
+                                                <a th:if="${!bookList.isFirstPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum-1})}">上一页</a>
                                             </td>
-                                            <td th:switch="${pageNum}">
-                                                <p th:case="${totalPages}"><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">下一页</a></p>
-                                                <p th:case="*"><a th:href="@{/listBook_reader.do(pageNum=${pageNum+1})}">下一页</a></p>
+                                            <td>
+                                                <a th:if="${bookList.isLastPage}"
+                                                   th:href="@{/listBook_reader.do(pageNum=${totalPages})}">下一页</a>
+                                            <a th:if="${!bookList.isLastPage}"
+                                               th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum+1})}">下一页</a>
                                             </td>
                                             <td><a th:href="@{/listBook_reader.do(pageNum=${totalPages})}">尾页</a></td>
                                         </tr>
+                                        <!--<tr>
+                                            <td>
+                                        <a th:if="${!bookList.isFirstPage}"
+                                           th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum-1})}">上一页</a>
+                                        <a th:if="${!bookList.isLastPage}"
+                                           th:href="@{/listBook_reader.do(pageNum=${bookList.pageNum+1})}">下一页</a>
+                                            </td>
+                                        </tr>-->
                                     </table>
 
 
@@ -92,13 +107,14 @@
                             </ol>
 
                         </div>
+                        <!--读者信息修改模块-->
                         <div class="tab-pane" id="panel-2">
                             <p>
                                 <form th:action="@{/updateReader.do}" method="post">
                                     <div class="col-xs-4">
-                            <p>账号<input class="form-control" type="text" name="rname" th:value="${rName}" readonly="true"></p>
+                            <p>账号<input class="form-control" type="text" name="rname" th:value="${username}" readonly="true"></p>
 
-                            <p>密码<input class="form-control" type="password" name="rpwd"></p>
+                            <p>密码<input class="form-control" type="text" name="rpwd" th:value="${rpwd}"></p>
                             <p>年龄<input class="form-control" type="text" name="rage" th:value="${rAge}"></p>
                             <p>性别<input type="radio" checked="checked" name="rsex" value="male">男
                                 <input type="radio"  name="rsex" value="female">女</p>
@@ -107,6 +123,7 @@
                             </form>
                             </p>
                         </div>
+                        <!--读者借阅记录模块-->
                         <div class="tab-pane" id="panel-3">
                             <p>
                             <table class="table table-bordered">
@@ -117,12 +134,16 @@
                                     <th>归还日期</th>
                                     <th>罚金</th>
                                 </tr>
-                                <tr th:each="reader_record:${recordList}">
-                                    <td th:text="${reader_record.bisbn}">bisbn</td>
-                                    <td th:text="${reader_record.rname}">rname</td>
-                                    <td th:text="${reader_record.outdate}">outdate</td>
-                                    <td th:text="${reader_record.indate}">indate</td>
-                                    <td th:text="${reader_record.penalty}">boutnumber</td>
+                                <tr th:each="recordList:${recordList.list}" >
+                                    <td th:text="${recordList.bisbn}">bisbn</td>
+                                    <td th:text="${recordList.rname}">rname</td>
+                                    <!--<td th:text="${recordList.outdate}">outdate</td>-->
+                                    <!--<td th:text="${recordList.indate}">indate</td>-->
+                                    <td th:text="${#dates.format(recordList.outdate,'yyyy-MM-dd')}">indate</td>
+                                    <td th:text="${#dates.format(recordList.indate,'yyyy-MM-dd')}">indate</td>
+                                    <!--<th:text="${#dates.format(user.birth, 'yyyy-MM-dd HH:mm')}"></p>-->
+
+                            <td th:text="${recordList.penalty}">boutnumber</td>
                                     <!--<td th:text="${listbook.bpic}">bpic</td>-->
 
                                     <!--<td>< img th:src="@{${listBook.detail}}" height="100" width="100" alt="image"/></td>-->

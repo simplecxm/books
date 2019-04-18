@@ -107,7 +107,7 @@
     insert into record (id, bisbn, rname,
       outdate, indate, penalty)
     values (null, #{bisbn,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR},
-      now(), DATE_ADD(now(), INTERVAL 1 Month), 0)
+      current_date(), DATE_ADD(current_date(), INTERVAL 1 Month), 0)
   </insert>
   <select id="reader_record" resultMap="BaseResultMap">
     select
@@ -115,6 +115,16 @@
     from  record
     where rname = #{rname}
   </select>
+  <update id="penalty" parameterType="com.lj.pojo.Record">
+    update record
+    set penalty = DATEDIFF(DAY,'1999/07/19','1999/07/19')
+    where indate = '2019/04/17'
+  </update>
+  <!--<update id="penalty">
+    update record
+    set penalty = (DATEDIFF(DD,'outdate',current_date())-30)*0.1
+    where DATEDIFF(DD,outdate,current_date())>1
+  </update>-->
 
 
 </mapper>

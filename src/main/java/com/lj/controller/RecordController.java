@@ -20,7 +20,7 @@ public class RecordController {
 
         return "record";
     }
-
+//管理员办理借阅
     @RequestMapping(value = "record.do", method = RequestMethod.GET)
     public String borrow(Record record, Model model) {
         ServerResponse response = iRecordService.borrow(record);
